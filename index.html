@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI写歌知识宝典</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#fafaf9;--bg-card:#ffffff;--bg-hover:#f5f5f4;--bg-warm:#fef7ed;
+  --text:#1c1917;--text-secondary:#57534e;--text-muted:#a8a29e;
+  --border:#e7e5e4;--border-hover:#d6d3d1;
+  --accent:#b45309;--accent-light:#fef3c7;--accent-bg:rgba(180,83,9,.06);
+  --shadow-sm:0 1px 2px rgba(0,0,0,.04);
+  --shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  --shadow-lg:0 4px 12px rgba(0,0,0,.06),0 2px 4px rgba(0,0,0,.04);
+  --radius:8px;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter','Noto Sans SC',system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);
+  min-height:100vh;overflow-x:hidden;padding-bottom:80px;
+  font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+.header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(250,250,249,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:0 max(24px, calc((100vw - 960px)/2));
+}
+.header-top{display:flex;align-items:center;gap:16px;height:56px}
+.logo{font-size:20px;line-height:1}
+.site-title{font-family:'Playfair Display',Georgia,serif;font-size:18px;font-weight:700;color:var(--text);letter-spacing:-.02em}
+.site-sub{font-size:11px;color:var(--text-muted);font-weight:400;letter-spacing:.04em;text-transform:uppercase;margin-left:2px}
+.search-box{margin-left:auto;position:relative;width:220px}
+.search-box input{width:100%;padding:7px 12px 7px 32px;border-radius:20px;background:var(--bg-hover);border:1px solid transparent;color:var(--text);font-size:13px;outline:none;transition:all .2s}
+.search-box input:focus{border-color:var(--border-hover);background:var(--bg-card);box-shadow:var(--shadow)}
+.search-box svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-muted);width:14px;height:14px}
+.tabs{display:flex;gap:0;height:40px;align-items:stretch}
+.tab{padding:0 18px;font-size:13px;font-weight:500;cursor:pointer;color:var(--text-muted);border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;user-select:none;display:flex;align-items:center;letter-spacing:.01em}
+.tab:hover{color:var(--text-secondary)}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.content{max-width:960px;margin:0 auto;padding:32px 24px}
+.module{display:none}.module.active{display:block}
+.module-title{font-family:'Playfair Display',Georgia,serif;font-size:28px;font-weight:700;letter-spacing:-.02em;margin-bottom:4px;color:var(--text)}
+.module-desc{font-size:13px;color:var(--text-muted);margin-bottom:28px;font-weight:400}
+.section-divider{width:40px;height:2px;background:var(--accent);margin:4px 0 20px;border-radius:1px}
+.sub-tabs{display:flex;gap:6px;margin-bottom:24px;flex-wrap:wrap}
+.sub-tab{padding:6px 16px;border-radius:20px;font-size:12px;font-weight:500;background:transparent;border:1px solid var(--border);color:var(--text-secondary);cursor:pointer;transition:all .2s;letter-spacing:.01em}
+.sub-tab:hover{border-color:var(--border-hover);color:var(--text)}
+.sub-tab.active{background:var(--text);border-color:var(--text);color:#fff}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.card:hover{box-shadow:var(--shadow-lg);border-color:var(--border-hover)}
+.card-top{display:flex;align-items:start;justify-content:space-between;gap:8px}
+.card-cn{font-size:16px;font-weight:600;margin-bottom:2px;letter-spacing:-.01em}
+.card-en{font-size:12px;color:var(--text-muted);margin-bottom:8px;font-weight:400}
+.card-desc{font-size:13px;color:var(--text-secondary);line-height:1.7;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{padding:3px 10px;border-radius:4px;font-size:11px;font-weight:500;background:var(--bg-hover);color:var(--text-secondary);border:none;cursor:pointer;transition:all .15s;user-select:none;letter-spacing:.02em}
+.tag:hover{background:var(--border);color:var(--text)}
+.tag.selected{background:var(--accent);color:#fff}
+.copy-btn{padding:3px 10px;border-radius:4px;font-size:11px;font-weight:500;background:transparent;color:var(--text-muted);border:1px solid var(--border);cursor:pointer;transition:all .15s}
+.copy-btn:hover{border-color:var(--text-secondary);color:var(--text)}
+.copy-btn.copied{background:var(--accent);color:#fff;border-color:var(--accent)}
+.term-list{display:flex;flex-direction:column;gap:2px}
+.term-row{display:flex;align-items:center;gap:16px;padding:12px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);transition:all .15s}
+.term-row:hover{box-shadow:var(--shadow);border-color:var(--border-hover)}
+.term-cn{font-size:14px;font-weight:600;min-width:120px;color:var(--text);letter-spacing:-.01em}
+.term-en{font-size:13px;color:var(--text-secondary);flex:1;font-weight:400}
+.term-actions{display:flex;gap:8px;align-items:center;flex-shrink:0}
+.add-btn{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;background:transparent;color:var(--text-muted);border:1px solid var(--border);cursor:pointer;transition:all .15s;font-size:15px;font-weight:300}
+.add-btn:hover{border-color:var(--accent);color:var(--accent)}
+.add-btn.added{background:var(--accent);color:#fff;border-color:var(--accent)}
+.genre-card{position:relative}
+.genre-add{position:absolute;top:16px;right:16px;width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;background:var(--bg-hover);color:var(--text-muted);border:1px solid var(--border);cursor:pointer;transition:all .15s;font-size:14px;opacity:0}
+.genre-card:hover .genre-add{opacity:1}
+.genre-add:hover{border-color:var(--accent);color:var(--accent)}
+.genre-add.added{opacity:1;background:var(--accent);color:#fff;border-color:var(--accent)}
+.song-list{margin-top:12px;display:flex;flex-direction:column;gap:4px}
+.song-item{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--bg);border-radius:6px;cursor:pointer;transition:background .15s}
+.song-item:hover{background:var(--bg-hover)}
+.song-play-btn{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent-bg);color:var(--accent);font-size:11px;flex-shrink:0;transition:all .2s}
+.song-item.playing .song-play-btn{background:var(--accent);color:#fff}
+.song-info{flex:1;min-width:0}
+.song-title{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+.song-artist{font-size:11px;color:var(--text-muted)}
+.progress-bar{width:100%;height:3px;background:var(--border);border-radius:2px;margin-top:8px;cursor:pointer;position:relative}
+.progress-fill{height:100%;border-radius:2px;background:var(--accent);transition:width .1s linear}
+.genre-detail{display:none;margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
+.genre-detail.open{display:block}
+/* FAB & Generator */
+.fab{position:fixed;bottom:24px;right:24px;z-index:200;width:52px;height:52px;border-radius:50%;background:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.15);transition:all .25s;font-size:20px}
+.fab:hover{transform:scale(1.06);box-shadow:0 6px 24px rgba(0,0,0,.2)}
+.fab .badge{position:absolute;top:-2px;right:-2px;min-width:18px;height:18px;border-radius:9px;background:var(--accent);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 5px}
+.generator-panel{position:fixed;bottom:86px;right:24px;z-index:200;width:420px;max-height:72vh;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;box-shadow:0 16px 48px rgba(0,0,0,.1),0 4px 12px rgba(0,0,0,.06);display:none;flex-direction:column;overflow:hidden}
+.generator-panel.open{display:flex}
+.gen-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.gen-title{font-size:14px;font-weight:700;letter-spacing:-.01em}
+.gen-close{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;background:var(--bg-hover);color:var(--text-muted);cursor:pointer;font-size:15px;border:none}
+.gen-close:hover{background:var(--border);color:var(--text)}
+.gen-body{padding:16px 20px;overflow-y:auto;flex:1}
+.gen-section{margin-bottom:14px}
+.gen-label{font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.gen-chips{display:flex;flex-wrap:wrap;gap:5px}
+.gen-chip{padding:3px 9px;border-radius:4px;font-size:11px;font-weight:500;background:var(--accent-bg);color:var(--accent);display:flex;align-items:center;gap:5px}
+.gen-chip .remove{cursor:pointer;opacity:.5;font-size:13px}.gen-chip .remove:hover{opacity:1}
+.gen-empty{font-size:12px;color:var(--text-muted);font-style:italic}
+.gen-output{padding:14px 16px;background:var(--bg);border-radius:var(--radius);margin-top:4px;min-height:56px;border:1px solid var(--border)}
+.gen-output-en{font-size:13px;color:var(--text);line-height:1.7;margin-bottom:6px;font-weight:500}
+.gen-output-zh{font-size:12px;color:var(--text-muted);line-height:1.5}
+.gen-output-empty{font-size:12px;color:var(--text-muted);font-style:italic}
+.gen-footer{padding:12px 20px;border-top:1px solid var(--border);display:flex;gap:8px}
+.gen-btn{flex:1;padding:8px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;text-align:center;border:none;letter-spacing:.01em}
+.gen-btn-primary{background:var(--text);color:#fff}.gen-btn-primary:hover{background:#292524}
+.gen-btn-secondary{background:var(--bg-hover);color:var(--text-secondary);border:1px solid var(--border)}.gen-btn-secondary:hover{background:var(--border);color:var(--text)}
+.gen-history{margin-top:8px}
+.history-item{padding:10px 12px;background:var(--bg);border:1px solid var(--border);border-radius:6px;margin-bottom:6px;cursor:pointer;transition:all .15s;display:flex;align-items:start;gap:8px}
+.history-item:hover{border-color:var(--border-hover);box-shadow:var(--shadow-sm)}
+.history-text{font-size:11px;color:var(--text-secondary);flex:1;line-height:1.5}
+.history-time{font-size:10px;color:var(--text-muted);flex-shrink:0;white-space:nowrap}
+.history-del{color:var(--text-muted);cursor:pointer;font-size:14px;flex-shrink:0}.history-del:hover{color:#dc2626}
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);padding:8px 20px;border-radius:20px;background:var(--text);color:#fff;font-size:13px;font-weight:500;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none;box-shadow:var(--shadow-lg)}
+.toast.show{opacity:1}
+.cat-filters{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap}
+.cat-chip{padding:5px 14px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;border:1px solid var(--border);color:var(--text-secondary);background:transparent;user-select:none}
+.cat-chip:hover{border-color:var(--border-hover);color:var(--text)}
+.cat-chip.active{background:var(--text)!important;border-color:var(--text)!important;color:#fff!important}
+.guide-article{margin-bottom:32px}
+.guide-article h3{font-family:'Playfair Display',Georgia,serif;font-size:20px;font-weight:700;margin-bottom:4px;letter-spacing:-.01em}
+.guide-article .guide-subtitle{font-size:12px;color:var(--text-muted);margin-bottom:16px}
+.guide-block{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:16px;transition:box-shadow .2s}
+.guide-block:hover{box-shadow:var(--shadow)}
+.guide-block h4{font-size:15px;font-weight:600;margin-bottom:10px;color:var(--text);display:flex;align-items:center;gap:8px}
+.guide-block h4 .num{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:6px;background:var(--accent-bg);color:var(--accent);font-size:12px;font-weight:700;flex-shrink:0}
+.guide-block p{font-size:13px;color:var(--text-secondary);line-height:1.8;margin-bottom:10px}
+.guide-block p:last-child{margin-bottom:0}
+.guide-block ul{padding-left:20px;margin-bottom:10px}
+.guide-block ul:last-child{margin-bottom:0}
+.guide-block li{font-size:13px;color:var(--text-secondary);line-height:1.8;margin-bottom:4px}
+.guide-block li:last-child{margin-bottom:0}
+.guide-block .tip{padding:10px 14px;background:var(--accent-bg);border-radius:6px;font-size:12px;color:var(--accent);line-height:1.7;margin-top:10px;border-left:3px solid var(--accent)}
+.guide-block .example{padding:10px 14px;background:var(--bg);border-radius:6px;font-size:12px;color:var(--text-secondary);line-height:1.7;margin-top:8px;font-family:'SF Mono',Menlo,monospace;white-space:pre-wrap;border:1px solid var(--border)}
+.guide-block .compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.guide-block .compare>div{padding:10px 14px;border-radius:6px;font-size:12px;line-height:1.7}
+.guide-block .bad{background:#fef2f2;border:1px solid #fecaca;color:#991b1b}
+.guide-block .good{background:#f0fdf4;border:1px solid #bbf7d0;color:#166534}
+@media(max-width:768px){
+  .search-box{width:100%;order:3}
+  .generator-panel{width:calc(100vw - 32px);right:16px;bottom:84px}
+  .cards{grid-template-columns:1fr}
+  .content{padding:24px 16px}
+  .header{padding:0 16px}
+  .header-top{flex-wrap:wrap;height:auto;padding:12px 0}
+  .module-title{font-size:24px}
+}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--border-hover)}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-top">
+    <span class="logo">&#9835;</span>
+    <span class="site-title">AI写歌知识宝典</span>
+    <span class="site-sub">Suno / Solo Prompt Guide</span>
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="globalSearch" placeholder="搜索关键词、乐器、风格...">
+    </div>
+  </div>
+  <div class="tabs" id="mainTabs">
+    <div class="tab active" data-tab="instruments">乐器</div>
+    <div class="tab" data-tab="genres">风格与流派</div>
+    <div class="tab" data-tab="vocals">人声演唱</div>
+    <div class="tab" data-tab="guide">Suno 技巧</div>
+    <div class="tab" data-tab="structure">结构</div>
+  </div>
+</div>
+<div class="content">
+  <div class="module" id="mod-structure">
+    <div class="module-title">歌曲结构与氛围</div>
+    <div class="section-divider"></div>
+    <div class="module-desc">段落结构、氛围情绪、速度节奏 — 点击 + 加入 Prompt 生成器</div>
+    <div class="sub-tabs" id="structSubTabs"></div>
+    <div class="term-list" id="structList"></div>
+  </div>
+  <div class="module active" id="mod-instruments">
+    <div class="module-title">常见乐器提示词</div>
+    <div class="section-divider"></div>
+    <div class="module-desc">按分类浏览 Suno 可识别的乐器关键词 — 点击 + 加入 Prompt 生成器</div>
+    <div class="sub-tabs" id="instrSubTabs"></div>
+    <div class="term-list" id="instrList"></div>
+  </div>
+  <div class="module" id="mod-genres">
+    <div class="module-title">音乐风格与流派</div>
+    <div class="section-divider"></div>
+    <div class="module-desc">点击卡片展开详情与试听 — 点击 + 加入 Prompt 生成器</div>
+    <div class="cat-filters" id="genreFilters"></div>
+    <div class="cards" id="genreCards"></div>
+  </div>
+  <div class="module" id="mod-vocals">
+    <div class="module-title">人声演唱提示词</div>
+    <div class="section-divider"></div>
+    <div class="module-desc">嗓音类型、演唱技巧、和声层次与音色效果 — 点击 + 加入 Prompt 生成器</div>
+    <div class="sub-tabs" id="vocalSubTabs"></div>
+    <div class="term-list" id="vocalList"></div>
+  </div>
+  <div class="module" id="mod-guide">
+    <div class="module-title">Suno 使用技巧</div>
+    <div class="section-divider"></div>
+    <div class="module-desc">从底层逻辑到实战技巧，帮你少走弯路、写出更好的 AI 音乐</div>
+    <div class="sub-tabs" id="guideSubTabs"></div>
+    <div id="guideContent"></div>
+  </div>
+</div>
+<div class="fab" id="fab" onclick="toggleGenerator()">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M12 3v18M3 12h18"/></svg>
+  <div class="badge" id="fabBadge" style="display:none">0</div>
+</div>
+<div class="generator-panel" id="genPanel">
+  <div class="gen-header">
+    <div class="gen-title">Prompt 生成器</div>
+    <div class="gen-close" onclick="toggleGenerator()">&#10005;</div>
+  </div>
+  <div class="gen-body">
+    <div class="gen-section" id="genTagsSection">
+      <div class="gen-label">已选标签</div>
+      <div id="genChips"><span class="gen-empty">从左侧模块点选关键词...</span></div>
+    </div>
+    <div class="gen-section">
+      <div class="gen-label">生成结果</div>
+      <div class="gen-output" id="genOutput">
+        <div class="gen-output-empty">选择一些标签后，这里会自动生成 Suno Prompt</div>
+      </div>
+    </div>
+    <div class="gen-section gen-history" id="genHistorySection" style="display:none">
+      <div class="gen-label">历史记录</div>
+      <div id="genHistoryList"></div>
+    </div>
+  </div>
+  <div class="gen-footer">
+    <button class="gen-btn gen-btn-primary" onclick="copyPrompt()">复制 Prompt</button>
+    <button class="gen-btn gen-btn-secondary" onclick="clearSelections()">清空</button>
+    <button class="gen-btn gen-btn-secondary" onclick="randomPrompt()">随机</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════════
+//  DATA
+// ══════════════════════════════════════════
+const STRUCTURE_DATA = {
+  '核心结构': [
+    {cn:'前奏/引子',en:'[intro]',desc:'歌曲开头的器乐段落'},
+    {cn:'主歌',en:'[verse]',desc:'叙事的主体段落'},
+    {cn:'预副歌/导歌',en:'[pre-chorus]',desc:'过渡到副歌的铺垫'},
+    {cn:'副歌',en:'[chorus]',desc:'歌曲的核心重复主题'},
+    {cn:'后副歌',en:'[post-chorus]',desc:'紧跟副歌的补充段落'},
+    {cn:'桥段',en:'[bridge]',desc:'提供对比的过渡段'},
+    {cn:'尾奏/尾声',en:'[outro]',desc:'歌曲的结束部分'},
+    {cn:'钩子/记忆点',en:'[hook]',desc:'引人注目的音乐短句'},
+  ],
+  '间奏与变化': [
+    {cn:'间奏',en:'[interlude]',desc:'段落间的器乐过渡'},
+    {cn:'器乐段',en:'[instrumental]',desc:'无人声的纯器乐部分'},
+    {cn:'独奏',en:'[solo]',desc:'单乐器即兴演奏'},
+    {cn:'歇段',en:'[break]',desc:'暂停或留白'},
+    {cn:'铺垫递进',en:'[build-up]',desc:'逐渐增加紧张感'},
+    {cn:'高潮落点',en:'[drop]',desc:'EDM 中能量爆发的时刻'},
+    {cn:'副歌重复',en:'[refrain]',desc:'重复的歌词短句'},
+    {cn:'循环重复',en:'[vamp]',desc:'延长歌曲的重复段'},
+  ],
+  '结尾与调性': [
+    {cn:'淡出',en:'[fade out]',desc:'音量逐渐减小结束'},
+    {cn:'结尾段',en:'[coda]',desc:'歌曲的最终段落'},
+    {cn:'尾标',en:'[tag]',desc:'结尾短暂重复短语'},
+    {cn:'转调',en:'[key change]',desc:'改变歌曲的调性'},
+    {cn:'调制/转调',en:'[modulation]',desc:'歌曲中的调性变化'},
+    {cn:'对位',en:'[counterpoint]',desc:'交织不同旋律'},
+    {cn:'引入',en:'[lead in]',desc:'乐器引导进入段落'},
+  ],
+  '表演标签': [
+    {cn:'强有力的',en:'[powerful]',desc:'需要强力表达'},
+    {cn:'强声',en:'[forte]',desc:'大声/强烈演唱'},
+    {cn:'强唱',en:'[belting]',desc:'有力的唱法'},
+    {cn:'高潮',en:'[climax]',desc:'歌声/乐器的顶峰'},
+    {cn:'深情的',en:'[passionate]',desc:'深情表演'},
+    {cn:'翱翔的',en:'[soaring]',desc:'声音剧烈上升'},
+    {cn:'悲伤的主歌',en:'[sad verse]',desc:'悲伤情绪的段落'},
+    {cn:'欢快的副歌',en:'[happy chorus]',desc:'欢快情绪的副歌'},
+    {cn:'说唱主歌',en:'[rapped verse]',desc:'用说唱表演的主歌'},
+  ],
+  '氛围与情绪': [
+    {cn:'梦幻的',en:'dreamy',desc:'朦胧、如梦似幻的质感'},{cn:'忧郁的',en:'melancholic',desc:'带有淡淡的忧伤'},
+    {cn:'欢快的',en:'cheerful',desc:'明亮积极的情绪'},{cn:'黑暗的',en:'dark',desc:'阴郁、沉重的氛围'},
+    {cn:'浪漫的',en:'romantic',desc:'柔情蜜意的情绪'},{cn:'史诗的',en:'epic',desc:'宏大壮阔的感觉'},
+    {cn:'怀旧的',en:'nostalgic',desc:'对过去的眷恋感'},{cn:'治愈的',en:'healing',desc:'温暖治愈的感觉'},
+    {cn:'愤怒的',en:'aggressive',desc:'强烈的冲击与愤怒'},{cn:'空灵的',en:'ethereal',desc:'飘渺、脱离尘世的'},
+    {cn:'温暖的',en:'warm',desc:'亲切、温馨的质感'},{cn:'冷冽的',en:'cold',desc:'冰冷、疏离的氛围'},
+    {cn:'紧张的',en:'tense',desc:'令人屏息的张力感'},{cn:'放松的',en:'relaxed',desc:'轻松惬意的感觉'},
+    {cn:'电影感的',en:'cinematic',desc:'如同电影画面般的质感'},{cn:'迷幻的',en:'psychedelic',desc:'意识流、迷离的'},
+  ],
+  '速度与节奏': [
+    {cn:'极慢（60 BPM）',en:'very slow tempo, 60 bpm',desc:'极缓慢，如挽歌'},
+    {cn:'慢速（70-80 BPM）',en:'slow tempo, 75 bpm',desc:'抒情曲常用速度'},
+    {cn:'中慢（90 BPM）',en:'moderate slow tempo, 90 bpm',desc:'R&B / 灵魂乐常用'},
+    {cn:'中速（100-110 BPM）',en:'moderate tempo, 105 bpm',desc:'流行曲常用速度'},
+    {cn:'中快（120 BPM）',en:'upbeat tempo, 120 bpm',desc:'舞曲/流行常用'},
+    {cn:'快速（130-140 BPM）',en:'fast tempo, 135 bpm',desc:'电子/摇滚常用'},
+    {cn:'极快（160+ BPM）',en:'very fast tempo, 170 bpm',desc:'DnB/朋克常用'},
+    {cn:'自由节奏',en:'rubato, free tempo',desc:'无固定拍速'},
+    {cn:'渐快',en:'accelerando',desc:'逐渐加快速度'},
+    {cn:'渐慢',en:'ritardando',desc:'逐渐放慢速度'},
+  ],
+  '特殊提示词': [
+    {cn:'纯器乐（无人声）',en:'instrumental, no vocals',desc:'完全无人声的曲目'},
+    {cn:'带说唱段落',en:'with a rap section',desc:'在某段落加入说唱'},
+    {cn:'渐入高潮',en:'builds to a powerful climax',desc:'从安静到爆发'},
+    {cn:'男女对唱',en:'male and female duet',desc:'两人交替演唱'},
+    {cn:'适合 TikTok',en:'catchy hook for social media',desc:'短视频友好'},
+    {cn:'带口哨旋律',en:'with a whistling melody',desc:'口哨作为旋律元素'},
+    {cn:'带手拍节奏',en:'with clapping rhythm',desc:'拍手作为打击乐'},
+    {cn:'现场演出感',en:'live concert feel',desc:'如同现场表演的质感'},
+    {cn:'Lo-fi 质感',en:'lo-fi production, vinyl crackle',desc:'低保真录音风格'},
+    {cn:'宽广的混响空间',en:'spacious reverb, cathedral-like',desc:'如教堂般开阔'},
+  ],
+};
+
+const INSTRUMENT_DATA = {
+  '键盘类': [
+    {cn:'钢琴',en:'piano'},{cn:'合成器',en:'synthesizer'},{cn:'键盘',en:'keyboard'},
+    {cn:'手风琴',en:'accordion'},{cn:'羽管键琴',en:'harpsichord'},{cn:'古钢琴',en:'clavichord'},
+    {cn:'口风琴',en:'melodica'},{cn:'Rhodes 电钢',en:'rhodes piano'},
+    {cn:'管风琴',en:'organ'},{cn:'电钢琴',en:'electric piano'},
+  ],
+  '弦乐类': [
+    {cn:'原声吉他',en:'acoustic guitar'},{cn:'电吉他',en:'electric guitar'},
+    {cn:'低音吉他/贝斯',en:'bass guitar'},{cn:'小提琴',en:'violin'},
+    {cn:'大提琴',en:'cello'},{cn:'中提琴',en:'viola'},
+    {cn:'低音提琴',en:'double bass'},{cn:'竖琴',en:'harp'},
+    {cn:'尤克里里',en:'ukulele'},{cn:'曼陀林',en:'mandolin'},
+    {cn:'班卓琴',en:'banjo'},{cn:'琉特琴',en:'lute'},
+    {cn:'西塔琴',en:'sitar'},{cn:'齐特琴',en:'zither'},
+    {cn:'布祖基琴',en:'bouzouki'},{cn:'弦乐合奏',en:'strings'},
+  ],
+  '管乐类': [
+    {cn:'长笛',en:'flute'},{cn:'短笛',en:'piccolo'},
+    {cn:'单簧管',en:'clarinet'},{cn:'双簧管',en:'oboe'},
+    {cn:'巴松管',en:'bassoon'},{cn:'萨克斯',en:'saxophone'},
+    {cn:'小号',en:'trumpet'},{cn:'长号',en:'trombone'},
+    {cn:'大号',en:'tuba'},{cn:'翼号',en:'flugelhorn'},
+    {cn:'口琴',en:'harmonica'},{cn:'排箫',en:'pan flute'},
+    {cn:'陶笛',en:'ocarina'},{cn:'风笛',en:'bagpipes'},
+    {cn:'铜管合奏',en:'brass'},{cn:'管弦乐',en:'orchestra'},
+  ],
+  '打击类': [
+    {cn:'鼓/鼓组',en:'drums'},{cn:'电子鼓',en:'electronic drums'},
+    {cn:'定音鼓',en:'timpani'},{cn:'马林巴',en:'marimba'},
+    {cn:'木琴',en:'xylophone'},{cn:'颤音琴',en:'vibraphone'},
+    {cn:'钟琴',en:'glockenspiel'},{cn:'铃鼓',en:'tambourine'},
+    {cn:'三角铁',en:'triangle'},{cn:'响板',en:'castanets'},
+    {cn:'木箱鼓',en:'cajón'},{cn:'钢鼓',en:'steel drum'},
+    {cn:'康加鼓',en:'congas'},{cn:'邦戈鼓',en:'bongos'},
+  ],
+  '民族乐器': [
+    {cn:'二胡',en:'erhu / Chinese violin'},{cn:'古筝',en:'guzheng'},
+    {cn:'古琴',en:'guqin'},{cn:'琵琶',en:'pipa'},
+    {cn:'竹笛',en:'bamboo flute'},{cn:'巴乌',en:'bawu'},
+    {cn:'中胡',en:'zhonghu'},{cn:'三味线',en:'shamisen'},
+    {cn:'尺八',en:'shakuhachi'},{cn:'太鼓',en:'taiko'},
+    {cn:'非洲鼓',en:'djembe'},{cn:'塔布拉鼓',en:'tabla'},
+    {cn:'乌德琴',en:'oud'},{cn:'班苏里笛',en:'bansuri'},
+    {cn:'特雷门琴',en:'theremin'},{cn:'迪吉里杜管',en:'didgeridoo'},
+  ],
+  '电子与合成': [
+    {cn:'808贝斯',en:'808 bass'},{cn:'合成器贝斯',en:'synth bass'},
+    {cn:'合成器铺底',en:'synth pad'},{cn:'合成器主音',en:'synth lead'},
+    {cn:'琶音器',en:'arpeggiator'},{cn:'鼓机',en:'drum machine'},
+    {cn:'采样器',en:'sampler'},{cn:'声码器',en:'vocoder'},
+    {cn:'Supersaw',en:'supersaw'},{cn:'Pluck 合成',en:'pluck synth'},
+  ],
+};
+
+const VOCAL_DATA = {
+  '嗓音类型': [
+    {cn:'沙哑的/烟嗓',en:'raspy / smoky voice',ex:'A male singer with a raspy, smoky voice.'},
+    {cn:'清澈的',en:'clear / pure voice',ex:'A clear, pure female vocal.'},
+    {cn:'深沉的',en:'deep voice',ex:'A deep, resonant male voice.'},
+    {cn:'高亢的',en:'powerful / piercing voice',ex:'A powerful, piercing vocal delivery.'},
+    {cn:'轻柔的/细腻的',en:'soft / gentle / delicate voice',ex:'A soft and gentle vocal tone.'},
+    {cn:'空灵的',en:'ethereal / airy / breathy voice',ex:'An ethereal and airy female vocal.'},
+    {cn:'磁性的',en:'soulful / husky voice',ex:'A soulful, husky male voice.'},
+    {cn:'鼻音重的',en:'nasally voice',ex:'A slightly nasally vocal tone.'},
+    {cn:'清脆的',en:'crisp voice',ex:'A crisp, articulate vocal.'},
+    {cn:'带有哭腔的',en:'voice with a cry / twang',ex:'A vocal with emotional cry and twang.'},
+    {cn:'男高音',en:'male tenor',ex:'A bright male tenor vocal.'},{cn:'男中音',en:'male baritone',ex:'A warm male baritone.'},{cn:'男低音',en:'male bass',ex:'A deep male bass voice.'},
+    {cn:'女高音',en:'female soprano',ex:'A clear female soprano.'},{cn:'女中音',en:'female mezzo',ex:'A warm female mezzo vocal.'},{cn:'女低音',en:'female alto / contralto',ex:'A rich female contralto.'},
+    {cn:'电子人声',en:'electronic vocal / robotic voice',ex:'A robotic, Auto-Tuned vocal.'},{cn:'自然人声',en:'natural vocal / clean vocal',ex:'A natural, clean vocal with minimal processing.'},
+    {cn:'童声',en:'child voice / children\'s choir',ex:'A pure children\'s choir.'},{cn:'少年音',en:'teen voice / adolescent vocal',ex:'A youthful teen vocal.'},
+  ],
+  '演唱技巧': [
+    {cn:'假声/假音',en:'falsetto',ex:'Verses in falsetto with airy tone.'},{cn:'真声/胸声',en:'chest voice',ex:'Powerful chest voice in the chorus.'},
+    {cn:'混声',en:'mixed voice',ex:'Blending chest and head voice smoothly.'},{cn:'嘶吼',en:'scream / growl',ex:'Aggressive growl vocals in the bridge.'},
+    {cn:'即兴转音',en:'vocal runs / riffs / melisma',ex:'Use a lot of vocal runs and riffs in the chorus.'},
+    {cn:'滑音',en:'glissando / slide',ex:'Smooth glissando between notes.'},{cn:'气声唱腔',en:'breathy vocal',ex:'Breathy whisper-style singing in the verse.'},
+    {cn:'喊叫式唱法',en:'shouted vocals',ex:'Shouted, raw vocals for punk energy.'},
+    {cn:'说话式唱法',en:'sprechgesang',ex:'Half-spoken, half-sung delivery.'},{cn:'约德尔唱法',en:'yodeling',ex:'Playful yodeling between registers.'},
+    {cn:'强唱/飙高音',en:'belting',ex:'Powerful belting in the final chorus.'},{cn:'低喉音',en:'vocal fry',ex:'Subtle vocal fry at the start of phrases.'},
+    {cn:'颤音',en:'vibrato',ex:'Natural vibrato on sustained notes.'},{cn:'头声',en:'head voice',ex:'Airy head voice in the pre-chorus.'},
+    {cn:'说唱',en:'rap vocal / hip-hop vocal',ex:'Rhythmic rap vocals over the beat.'},
+    {cn:'美声唱法',en:'bel canto',ex:'Classical bel canto vocal technique.'},
+    {cn:'R&B唱腔',en:'R&B vocal',ex:'Smooth R&B vocal with lots of ad-libs.'},
+  ],
+  '和声与层次': [
+    {cn:'厚实的和声',en:'rich / thick harmonies',ex:'Rich, thick vocal harmonies in the chorus.'},
+    {cn:'分层人声',en:'layered vocals',ex:'Multiple layered vocal tracks creating depth.'},
+    {cn:'呼应对唱',en:'call and response vocals',ex:'Call and response between lead and backing vocals.'},
+    {cn:'卡农式轮唱',en:'round / canon-style vocals',ex:'Canon-style vocal rounds building texture.'},
+    {cn:'和声垫',en:'vocal pads',ex:'Sustained vocal pads creating atmosphere.'},
+    {cn:'背景和声',en:'background vocals / backing vocals',ex:'Subtle backing vocals supporting the lead.'},
+    {cn:'男女合唱',en:'male & female duet',ex:'A male and female duet trading verses.'},
+    {cn:'女声合唱团',en:'female choir',ex:'A lush female choir in the chorus.'},
+    {cn:'男声合唱团',en:'male choir',ex:'A deep male choir adding gravity.'},
+    {cn:'混合合唱团',en:'mixed choir',ex:'A full mixed choir for an epic feel.'},
+    {cn:'福音合唱团',en:'gospel choir',ex:'An uplifting gospel choir.'},
+  ],
+  '音色效果': [
+    {cn:'混响',en:'reverb',ex:'Add lush reverb on the vocals for space.'},{cn:'延迟/回声',en:'delay / echo',ex:'Delay effect creating rhythmic echoes.'},
+    {cn:'合唱效果',en:'chorus effect',ex:'Chorus effect thickening the vocal.'},{cn:'镶边',en:'flanger',ex:'Subtle flanger on the vocal.'},
+    {cn:'相位',en:'phaser',ex:'Phaser effect creating movement.'},{cn:'失真',en:'distortion / overdrive',ex:'Gritty vocal distortion for edge.'},
+    {cn:'Auto-Tune（特效感）',en:'heavy auto-tune / robotic effect',ex:'Heavy Auto-Tune for a robotic, futuristic vocal.'},
+    {cn:'电话音效',en:'telephone filter / lo-fi effect',ex:'Lo-fi telephone filter on the bridge vocals.'},
+    {cn:'声码器',en:'vocoder',ex:'Vocoder-processed harmonies.'},{cn:'反转人声',en:'reversed vocals',ex:'Reversed vocal samples in the intro.'},
+    {cn:'人声切片',en:'vocal chops',ex:'Chopped vocal samples used as rhythmic elements.'},
+    {cn:'低语人声',en:'whisper voice',ex:'Intimate whisper vocals in the verse.'},
+    {cn:'天使般的嗓音',en:'angelic voice / airy female voice',ex:'Angelic, airy female voice with lots of reverb.'},
+    {cn:'梦境人声',en:'dreamy vocal / reverb female voice',ex:'Dreamy, reverb-drenched female vocal.'},
+  ],
+};
+
+const CATEGORIES = [
+  {id:'all',name:'全部'},{id:'electronic',name:'电子'},{id:'hiphop',name:'嘻哈 & R&B'},
+  {id:'rock',name:'摇滚'},{id:'pop',name:'流行'},{id:'jazz',name:'爵士 & 蓝调'},
+  {id:'classical',name:'古典'},{id:'folk',name:'民谣 & 乡村'},{id:'metal',name:'金属'},
+  {id:'world',name:'世界音乐'},{id:'chinese',name:'国风'},
+];
+
+const GENRES = [
+  {id:'edm',name:'EDM',nameZh:'电子舞曲',cat:'electronic',desc:'以强劲四拍底鼓和 build-up / drop 结构为标志的电子舞曲',artists:['Avicii','Martin Garrix','Skrillex'],tags:['edm','electronic','four-on-the-floor','drop','build-up'],songs:[{t:'Levels',a:'Avicii',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/0f/7f/a2/0f7fa2de-0347-7e03-5485-81b6da04962a/mzaf_2741085520965189203.plus.aac.p.m4a'},{t:'Animals',a:'Martin Garrix',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/a1/75/48/a1754841-d05c-0402-bdee-16d724ae47a2/mzaf_16624181595158272558.plus.aac.p.m4a'}]},
+  {id:'house',name:'House',nameZh:'浩室',cat:'electronic',desc:'稳定的四拍底鼓、温暖贝斯线和灵魂乐采样',artists:['Daft Punk','Disclosure'],tags:['house','four-on-the-floor','groove','warm bass'],songs:[{t:'One More Time',a:'Daft Punk',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/98/96/f6/9896f638-8b47-3f76-c47e-19e43b53677c/mzaf_15900001332254520801.plus.aac.p.m4a'}]},
+  {id:'techno',name:'Techno',nameZh:'铁克诺',cat:'electronic',desc:'机械化重复节奏和暗黑氛围的地下电子音乐',artists:['Richie Hawtin','Carl Cox'],tags:['techno','minimal','dark','industrial'],songs:[{t:'Spastik',a:'Plastikman',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/3c/6f/0d/3c6f0d23-77e1-1fdd-1d89-cc9722b6b1b2/mzaf_16142563285555144243.plus.aac.p.m4a'}]},
+  {id:'lofi-hiphop',name:'Lo-fi Hip Hop',nameZh:'低保真嘻哈',cat:'electronic',desc:'慵懒温暖的嘻哈节拍 + 黑胶噪声质感',artists:['Nujabes','Jinsang'],tags:['lo-fi','chill','jazzy','vinyl crackle'],songs:[{t:'Feather',a:'Nujabes',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/5e/c2/00/5ec20040-e85b-77c0-6976-571fa4aebd3c/mzaf_8009078761645376098.plus.aac.p.m4a'}]},
+  {id:'synthwave',name:'Synthwave',nameZh:'合成器浪潮',cat:'electronic',desc:'致敬 80 年代的复古合成器音色和霓虹灯美学',artists:['Kavinsky','The Midnight'],tags:['synthwave','retro','80s','neon'],songs:[{t:'Nightcall',a:'Kavinsky',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/0a/de/fd/0adefd5b-145a-1cc9-f3b5-be89fd0232b9/mzaf_4322553693875273982.plus.aac.p.m4a'}]},
+  {id:'dubstep',name:'Dubstep',nameZh:'回响贝斯',cat:'electronic',desc:'极重低频 Wobble Bass 和暗黑空间感',artists:['Skrillex','Burial'],tags:['dubstep','wobble bass','half-time','heavy bass'],songs:[{t:'Scary Monsters and Nice Sprites',a:'Skrillex',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/6a/f5/f2/6af5f2fd-4fe3-6981-8b01-3bb3a7417027/mzaf_2676481089062971648.plus.aac.p.m4a'}]},
+  {id:'ambient',name:'Ambient',nameZh:'氛围音乐',cat:'electronic',desc:'无明确节拍的环境性音乐，强调沉浸体验',artists:['Brian Eno','Aphex Twin'],tags:['ambient','atmospheric','drone','spacious'],songs:[{t:'Music for Airports 1/1',a:'Brian Eno',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/24/c4/f5/24c4f540-5a9e-4d3c-24f8-6a622417dec7/mzaf_16193309359931078587.plus.aac.p.m4a'}]},
+  {id:'drum-and-bass',name:'Drum and Bass',nameZh:'鼓打贝斯',cat:'electronic',desc:'极快碎拍鼓组 + 深沉低音线',artists:['Pendulum','Goldie'],tags:['drum and bass','breakbeat','fast','170bpm'],songs:[{t:'Hold Your Colour',a:'Pendulum',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview113/v4/a5/2d/25/a52d2560-165e-1741-8c60-7f6c96d77d5c/mzaf_7779722640529373587.plus.aac.p.m4a'}]},
+  {id:'trance',name:'Trance',nameZh:'出神音乐',cat:'electronic',desc:'层叠合成器旋律与催眠般的渐进结构',artists:['Armin van Buuren','Above & Beyond'],tags:['trance','euphoric','progressive','uplifting'],songs:[{t:'Sun & Moon',a:'Above & Beyond',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/01/82/38/018238fc-ec84-1914-1fff-009e7a9ec9aa/mzaf_9060229577401832010.plus.aac.p.m4a'}]},
+  {id:'trip-hop',name:'Trip-Hop',nameZh:'神游舞曲',cat:'electronic',desc:'缓慢沉重的 Hip Hop 节拍 + 暗黑电影化氛围',artists:['Massive Attack','Portishead'],tags:['trip-hop','dark','cinematic','downtempo'],songs:[{t:'Teardrop',a:'Massive Attack',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f0/31/78/f0317854-f180-d1cd-a974-8acc48834b7b/mzaf_8992917226755403839.plus.aac.p.m4a'}]},
+  {id:'hiphop',name:'Hip Hop',nameZh:'嘻哈',cat:'hiphop',desc:'以 Beat 为骨架、说唱为核心的文化体系',artists:['Kendrick Lamar','Jay-Z','Nas'],tags:['hip hop','rap','boom bap','beats'],songs:[{t:'HUMBLE.',a:'Kendrick Lamar',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/30/3f/27/303f27c8-1997-8c57-66b3-b67e7c720779/mzaf_5598476068977070849.plus.aac.p.m4a'}]},
+  {id:'trap',name:'Trap',nameZh:'陷阱音乐',cat:'hiphop',desc:'808 低音 + 快速碎击 hi-hat + Auto-Tune',artists:['Travis Scott','Future','Metro Boomin'],tags:['trap','808','hi-hat rolls','auto-tune'],songs:[{t:'SICKO MODE',a:'Travis Scott',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/85/49/e2/8549e207-7ecf-21a9-7b2f-b414175c6a74/mzaf_10189975321658500285.plus.aac.p.m4a'}]},
+  {id:'rnb',name:'R&B',nameZh:'节奏蓝调',cat:'hiphop',desc:'情感丰富的人声旋律、柔和律动与亲密质感',artists:['The Weeknd','Frank Ocean','SZA'],tags:['r&b','smooth','soulful','groove'],songs:[{t:'Blinding Lights',a:'The Weeknd',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/17/b4/8f/17b48f9a-0b93-6bb8-fe1d-3a16623c2cfb/mzaf_9560252727299052414.plus.aac.p.m4a'}]},
+  {id:'neo-soul',name:'Neo-Soul',nameZh:'新灵魂乐',cat:'hiphop',desc:'Soul + Jazz + Hip Hop 的有机融合',artists:['Erykah Badu',"D'Angelo"],tags:['neo-soul','organic','rhodes','jazzy'],songs:[{t:'On & On',a:'Erykah Badu',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/c1/ba/1f/c1ba1f18-9c32-163f-461c-e98f4fd728c9/mzaf_152927492885839060.plus.aac.p.m4a'}]},
+  {id:'soul',name:'Soul',nameZh:'灵魂乐',cat:'hiphop',desc:'充满激情的人声表达，融合福音与蓝调',artists:['Marvin Gaye','Aretha Franklin'],tags:['soul','passionate','gospel influence','brass'],songs:[{t:"What's Going On",a:'Marvin Gaye',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/08/f3/f4/08f3f452-b24f-e25b-92bc-15850f1bdc6a/mzaf_14002930736666872327.plus.aac.p.m4a'}]},
+  {id:'funk',name:'Funk',nameZh:'放克',cat:'hiphop',desc:'强烈律动感、切分节奏和 Slap Bass',artists:['James Brown','Prince'],tags:['funk','groovy','slap bass','syncopation'],songs:[{t:'Superstition',a:'Stevie Wonder',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/ff/a3/1a/ffa31a9f-8d91-68a8-e85c-cf8e74284079/mzaf_15951061299338017971.plus.aac.p.m4a'}]},
+  {id:'alternative-rock',name:'Alternative Rock',nameZh:'另类摇滚',cat:'rock',desc:'吉他驱动、旋律感强的非主流摇滚',artists:['Radiohead','Nirvana','Arctic Monkeys'],tags:['alternative rock','guitar-driven','quiet-loud','emotional'],songs:[{t:'Creep',a:'Radiohead',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/8d/e0/bb/8de0bb10-0593-83cc-4d2c-4e9f6ea9b575/mzaf_16440589638018943894.plus.aac.p.m4a'}]},
+  {id:'punk-rock',name:'Punk Rock',nameZh:'朋克摇滚',cat:'rock',desc:'快速简单的三和弦 + 高能量 + 反建制态度',artists:['Ramones','Green Day'],tags:['punk','fast','raw','three-chord'],songs:[{t:'Blitzkrieg Bop',a:'Ramones',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/07/66/3f/07663f2e-8f1a-c22f-a688-a8599002214c/mzaf_1731743994284736681.plus.aac.p.m4a'}]},
+  {id:'post-rock',name:'Post-Rock',nameZh:'后摇滚',cat:'rock',desc:'渐进式器乐叙事，从安静到震撼的高潮',artists:['Explosions in the Sky','Sigur Rós'],tags:['post-rock','crescendo','instrumental','atmospheric'],songs:[{t:'Your Hand in Mine',a:'Explosions in the Sky',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/93/11/0c/93110cd7-91d9-85fc-52fb-07357b1aef7b/mzaf_1502388509077194502.plus.aac.p.m4a'}]},
+  {id:'indie-rock',name:'Indie Rock',nameZh:'独立摇滚',cat:'rock',desc:'注重创作个性和 DIY 精神的摇滚',artists:['Tame Impala','Mac DeMarco'],tags:['indie rock','lo-fi','jangly guitar','authentic'],songs:[{t:'Feels Like We Only Go Backwards',a:'Tame Impala',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/46/3a/f8/463af8fb-3ad4-1a5a-02c7-edab14457e10/mzaf_2186243149485269803.plus.aac.p.m4a'}]},
+  {id:'shoegaze',name:'Shoegaze',nameZh:'自赏',cat:'rock',desc:'巨大的吉他噪音墙包裹轻柔人声',artists:['My Bloody Valentine','Slowdive'],tags:['shoegaze','wall of sound','heavy reverb','dreamy noise'],songs:[{t:'Only Shallow',a:'My Bloody Valentine',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/6c/7d/32/6c7d3231-a35a-a64e-c77e-e5dd24a7ea0f/mzaf_10441325985140857715.plus.aac.p.m4a'}]},
+  {id:'grunge',name:'Grunge',nameZh:'垃圾摇滚',cat:'rock',desc:'厚重失真 + 愤怒疏离感的 90 年代运动',artists:['Nirvana','Pearl Jam'],tags:['grunge','distorted','angst','90s'],songs:[{t:'Smells Like Teen Spirit',a:'Nirvana',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/a6/53/1e/a6531efa-397c-eb73-ecab-9b2790c1471e/mzaf_16440344883389407474.plus.aac.p.m4a'}]},
+  {id:'pop',name:'Pop',nameZh:'流行',cat:'pop',desc:'易记旋律、精细制作，追求最广泛的听众共鸣',artists:['Taylor Swift','Dua Lipa','Billie Eilish'],tags:['pop','catchy','mainstream','polished'],songs:[{t:'Levitating',a:'Dua Lipa',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/59/dc/4d/59dc4dda-93ff-8f1c-c536-f005f6ea6af5/mzaf_3066686759813252385.plus.aac.p.m4a'},{t:'Bad Guy',a:'Billie Eilish',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/c3/87/1f/c3871f7e-3260-d615-1c66-5fdca2c3a48f/mzaf_10721331211699880949.plus.aac.p.m4a'}]},
+  {id:'kpop',name:'K-Pop',nameZh:'韩国流行',cat:'pop',desc:'精细音乐制作 + 视觉概念 + 多风格融合',artists:['BTS','BLACKPINK','NewJeans'],tags:['k-pop','idol','choreography','multi-genre'],songs:[{t:'Dynamite',a:'BTS',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/3b/f2/5c/3bf25cc9-a395-6858-1ef8-5c29956afaf6/mzaf_6007556042949037280.plus.aac.p.m4a'}]},
+  {id:'city-pop',name:'City Pop',nameZh:'城市流行',cat:'pop',desc:'70-80 年代日本都市流行，融合 Funk 与 Jazz',artists:['竹内まりや','山下達郎'],tags:['city pop','retro japanese','funk guitar','rhodes'],songs:[{t:'Plastic Love',a:'竹内まりや',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/bf/83/69/bf8369db-79cc-822e-d36f-37b2e6fdb451/mzaf_10229507402446470387.plus.aac.p.m4a'}]},
+  {id:'synth-pop',name:'Synth Pop',nameZh:'合成器流行',cat:'pop',desc:'以合成器为主要旋律乐器的流行音乐',artists:['Depeche Mode','New Order'],tags:['synth pop','synthesizer','drum machine','80s'],songs:[{t:'Blue Monday',a:'New Order',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/0f/43/1c/0f431c1a-119c-6614-2736-3fbc4c8a597c/mzaf_3646998447648845325.plus.aac.p.m4a'}]},
+  {id:'indie-pop',name:'Indie Pop',nameZh:'独立流行',cat:'pop',desc:'甜美旋律 + 轻盈编曲 + DIY 精神',artists:['Clairo','boy pablo'],tags:['indie pop','sweet','lo-fi','sunshine'],songs:[{t:'Sofia',a:'Clairo',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/5a/8e/62/5a8e62b5-cffc-d219-3cc9-92d9cd824677/mzaf_2182395064549369800.plus.aac.p.m4a'}]},
+  {id:'dream-pop',name:'Dream Pop',nameZh:'梦幻流行',cat:'pop',desc:'空灵人声 + 层叠音色 + 朦胧氛围',artists:['Beach House','Cocteau Twins'],tags:['dream pop','ethereal','reverb','hazy'],songs:[{t:'Space Song',a:'Beach House',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/4b/1d/64/4b1d6431-295b-2683-d180-cf3cba4eb943/mzaf_10508096473229016789.plus.aac.p.m4a'}]},
+  {id:'electro-pop',name:'Electro Pop',nameZh:'电子流行',cat:'pop',desc:'电子制作技术 + 流行旋律的深度融合',artists:['Robyn','M83','Charli XCX'],tags:['electro pop','electronic','auto-tune','sidechain'],songs:[{t:'Midnight City',a:'M83',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/71/5c/80/715c80fc-ebe4-e713-487c-5bdefee6c6f3/mzaf_3698387428135478316.plus.aac.p.m4a'}]},
+  {id:'disco',name:'Disco',nameZh:'迪斯科',cat:'pop',desc:'华丽管弦编曲 + 四拍底鼓 + 纯粹的快乐',artists:['Bee Gees','Donna Summer'],tags:['disco','four-on-the-floor','strings','groovy'],songs:[{t:"Stayin' Alive",a:'Bee Gees',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/dc/8b/52/dc8b524e-e54e-55bb-bf00-03d7b09a7da2/mzaf_14448685722778211602.plus.aac.p.m4a'}]},
+  {id:'jpop',name:'J-Pop',nameZh:'日本流行',cat:'pop',desc:'精致制作、丰富转调，与动画文化深度绑定',artists:['YOASOBI','米津玄師'],tags:['j-pop','anime','complex melody','vocaloid'],songs:[{t:'アイドル',a:'YOASOBI',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f0/db/16/f0db16be-457e-f10f-98b6-f30b11de34e4/mzaf_5189430943078523093.plus.aac.p.m4a'}]},
+  {id:'mandopop',name:'Mandopop',nameZh:'华语流行',cat:'pop',desc:'华语圈流行音乐，旋律清晰、副歌记忆点强',artists:['周杰伦','林俊杰','邓紫棋'],tags:['mandopop','chinese pop','ballad','lyrical'],songs:[]},
+  {id:'pop-ballad',name:'Pop Ballad',nameZh:'流行抒情',cat:'pop',desc:'慢板突出人声与旋律，副歌情绪递进',artists:['Adele','Sam Smith'],tags:['ballad','slow','emotional','piano'],songs:[{t:'Thinkin Bout You',a:'Frank Ocean',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/8a/2c/35/8a2c35f6-ac70-560c-0a1c-516e105c6af8/mzaf_13522699475931524613.plus.aac.p.m4a'}]},
+  {id:'jazz',name:'Jazz',nameZh:'爵士',cat:'jazz',desc:'即兴演奏 + 复杂和声 + Swing 节奏',artists:['Miles Davis','John Coltrane'],tags:['jazz','improvisation','swing','complex chords'],songs:[{t:'So What',a:'Miles Davis',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/54/e8/0a/54e80a8b-1d60-6b59-e908-6fd65c4ff783/mzaf_2469862574651846302.plus.aac.p.m4a'},{t:'Take Five',a:'Dave Brubeck',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/cc/49/99/cc4999b7-b550-cf81-af69-a4c63475fc71/mzaf_10897310118931669841.plus.aac.p.m4a'}]},
+  {id:'blues',name:'Blues',nameZh:'蓝调',cat:'jazz',desc:'12 小节进行 + Blue Notes + 深沉情感',artists:['B.B. King','Muddy Waters'],tags:['blues','12-bar','blue notes','soulful guitar'],songs:[{t:'The Thrill Is Gone',a:'B.B. King',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/b3/17/a9/b317a996-a210-f807-a311-6de43f76cca0/mzaf_8855371920521934911.plus.aac.p.m4a'}]},
+  {id:'bossa-nova',name:'Bossa Nova',nameZh:'波萨诺瓦',cat:'jazz',desc:'巴西节奏 + 酷派爵士和声 + 轻柔人声',artists:['João Gilberto','Stan Getz'],tags:['bossa nova','brazilian','nylon guitar','gentle'],songs:[{t:'The Girl from Ipanema',a:'Stan Getz',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/03/e4/9d/03e49ddf-a1f8-0fc2-3ffd-b66875f315b6/mzaf_14664684074021255598.plus.aac.p.m4a'}]},
+  {id:'gospel',name:'Gospel',nameZh:'福音音乐',cat:'jazz',desc:'充满激情的合唱与呼应结构',artists:['Kirk Franklin','Mahalia Jackson'],tags:['gospel','choir','call and response','spiritual'],songs:[{t:'Oh Happy Day',a:'Edwin Hawkins Singers',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/ce/e7/c3/cee7c37d-1f11-3ddc-9913-07b9d92021d4/mzaf_12307309420904937224.plus.aac.p.m4a'}]},
+  {id:'classical',name:'Classical',nameZh:'古典音乐',cat:'classical',desc:'管弦乐编制、严谨曲式与极大动态范围',artists:['贝多芬','莫扎特','肖邦'],tags:['classical','orchestral','symphony','sonata'],songs:[{t:'月光奏鸣曲',a:'贝多芬',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/67/e3/7c/67e37c7b-d008-3f50-313a-d33b0920e987/mzaf_715796285380793741.plus.aac.p.m4a'}]},
+  {id:'film-score',name:'Film Score',nameZh:'电影配乐',cat:'classical',desc:'管弦乐 + 主题动机 + 服务于画面叙事',artists:['Hans Zimmer','John Williams','久石让'],tags:['film score','cinematic','orchestral','epic'],songs:[{t:'Time',a:'Hans Zimmer',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/94/9c/89/949c8995-41f8-d3c1-90eb-81c10b54133b/mzaf_8252792899119007978.plus.aac.p.m4a'}]},
+  {id:'neo-classical',name:'Neo-Classical',nameZh:'新古典',cat:'classical',desc:'钢琴弦乐 + 极简主义 + 现代录音美学',artists:['Nils Frahm','Max Richter'],tags:['neo-classical','minimal','piano','intimate'],songs:[]},
+  {id:'folk',name:'Folk',nameZh:'民谣',cat:'folk',desc:'原声乐器 + 叙事性歌词 + 真诚情感',artists:['Bob Dylan','Bon Iver'],tags:['folk','acoustic','storytelling','honest'],songs:[{t:"Blowin' in the Wind",a:'Bob Dylan',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/86/db/13/86db13c7-3148-c3c3-13ef-d34aa8dd1b93/mzaf_7616061957856387732.plus.aac.p.m4a'}]},
+  {id:'country',name:'Country',nameZh:'乡村',cat:'folk',desc:'钢弦吉他 + Fiddle + 乡村生活叙事',artists:['Johnny Cash','Kacey Musgraves'],tags:['country','pedal steel','fiddle','twangy'],songs:[{t:'Ring of Fire',a:'Johnny Cash',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/2c/12/68/2c126894-fd6b-b37c-d556-6d91bd8c0875/mzaf_17832761364720403968.plus.aac.p.m4a'}]},
+  {id:'bluegrass',name:'Bluegrass',nameZh:'蓝草音乐',cat:'folk',desc:'极快器乐速度 + 高超即兴 + 高亢和声',artists:['Bill Monroe','Alison Krauss'],tags:['bluegrass','banjo','mandolin','fast picking'],songs:[{t:'Foggy Mountain Breakdown',a:'Lester Flatt & Earl Scruggs',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/36/3d/0c/363d0c11-52e8-6aa2-eccc-f250f627f878/mzaf_16434555222870001693.plus.aac.p.m4a'}]},
+  {id:'folk-pop',name:'Folk Pop',nameZh:'民谣流行',cat:'folk',desc:'原声吉他 + 流行旋律 + 叙事文学感',artists:['Ed Sheeran','赵雷'],tags:['folk pop','acoustic guitar','singalong','warm'],songs:[{t:'Ho Hey',a:'The Lumineers',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/12/a7/d7/12a7d77c-b9cb-550a-dacc-7e96676b8e49/mzaf_14790682879186925076.plus.aac.p.m4a'}]},
+  {id:'heavy-metal',name:'Heavy Metal',nameZh:'重金属',cat:'metal',desc:'极度失真吉他 + Power Chord + 猛烈鼓击',artists:['Metallica','Iron Maiden'],tags:['heavy metal','distorted guitar','power chords','double bass drum'],songs:[{t:'Master of Puppets',a:'Metallica',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/da/e7/9c/dae79c08-a960-2d21-8eab-42e9d70e29e6/mzaf_7135498142102205621.plus.aac.p.m4a'}]},
+  {id:'death-metal',name:'Death Metal',nameZh:'死亡金属',cat:'metal',desc:'极低调弦 + Blast Beat + 低吼人声',artists:['Death','Cannibal Corpse'],tags:['death metal','blast beat','growl','extreme'],songs:[{t:'Crystal Mountain',a:'Death',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/60/0b/44/600b444a-e8e3-70a9-7288-b4447b9d7c89/mzaf_3535655326689595418.plus.aac.p.m4a'}]},
+  {id:'progressive-metal',name:'Progressive Metal',nameZh:'前卫金属',cat:'metal',desc:'高技术性 + 复合拍号 + 跨风格融合',artists:['Dream Theater','Tool'],tags:['progressive metal','polyrhythm','technical','complex'],songs:[{t:'Schism',a:'Tool',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/26/08/d9/2608d909-7e76-d560-072f-e7482983836b/mzaf_6281680702296685845.plus.aac.p.m4a'}]},
+  {id:'reggae',name:'Reggae',nameZh:'雷鬼',cat:'world',desc:'Off-beat 吉他 + 深沉贝斯 + One Drop 节奏',artists:['Bob Marley','Peter Tosh'],tags:['reggae','off-beat','one drop','jamaican'],songs:[{t:'No Woman, No Cry',a:'Bob Marley',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/24/87/b6/2487b606-b274-e51f-97f2-4b9268122a7a/mzaf_7005521653741762241.plus.aac.p.m4a'}]},
+  {id:'latin',name:'Latin',nameZh:'拉丁',cat:'world',desc:'Clave 节奏 + 丰富打击乐 + 热情律动',artists:['Bad Bunny','Shakira'],tags:['latin','reggaeton','salsa','dembow'],songs:[{t:'Despacito',a:'Luis Fonsi',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/40/5b/e7/405be722-3ec9-ba27-7469-002182d57b39/mzaf_14120258742032474456.plus.aac.p.m4a'}]},
+  {id:'afrobeats',name:'Afrobeats',nameZh:'非洲节拍',cat:'world',desc:'西非节奏 + 现代制作 + 多语言人声',artists:['Burna Boy','Wizkid'],tags:['afrobeats','african rhythm','warm','multilingual'],songs:[{t:'Essence',a:'Wizkid ft. Tems',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/b3/dc/ba/b3dcba73-7f33-9abe-089c-73557a6dcb54/mzaf_16412591162283722395.plus.aac.p.m4a'}]},
+  {id:'flamenco',name:'Flamenco',nameZh:'弗拉门戈',cat:'world',desc:'激情吉他 + 手掌击拍 + 灵魂深处的激情',artists:['Paco de Lucía','Rosalía'],tags:['flamenco','spanish guitar','palmas','passionate'],songs:[{t:'Entre dos aguas',a:'Paco de Lucía',u:'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/c3/ee/22/c3ee2258-bb34-93f2-a693-b9ec00e72f58/mzaf_11785309879390052478.plus.aac.p.m4a'}]},
+  {id:'chinese-style',name:'Chinese Style',nameZh:'中国风',cat:'chinese',desc:'五声音阶 + 民族乐器 + 流行框架',artists:['周杰伦','林俊杰','许嵩'],tags:['chinese style','pentatonic','erhu','guzheng'],songs:[]},
+  {id:'gufeng',name:'GuFeng',nameZh:'古风',cat:'chinese',desc:'文言歌词 + 民族器乐 + 武侠仙侠',artists:['河图','银临'],tags:['gufeng','ancient chinese','bamboo flute','pipa'],songs:[]},
+  {id:'chinese-edm',name:'Chinese EDM',nameZh:'国风电子',cat:'chinese',desc:'EDM/Trap 制作 + 民族乐器采样',artists:['Anti-General','徐梦圆'],tags:['chinese edm','electronic','guzheng drop','fusion'],songs:[]},
+];
+
+// Tag type mapping for prompt framework
+const TAG_TYPE_MAP = {
+  'genre': {label:'风格', order:1},
+  'instrument': {label:'乐器', order:2},
+  'mood': {label:'氛围', order:3},
+  'vocal': {label:'人声', order:4},
+  'structure': {label:'段落', order:5},
+  'tempo': {label:'速度', order:6},
+  'special': {label:'特殊', order:7},
+};
+
+// Map structure sub-tab to tag type
+function getTagType(structCat) {
+  if (structCat === '氛围与情绪') return 'mood';
+  if (structCat === '速度与节奏') return 'tempo';
+  if (structCat === '特殊提示词') return 'special';
+  return 'structure';
+}
+
+// ══════════════════════════════════════════
+//  GUIDE DATA
+// ══════════════════════════════════════════
+const GUIDE_DATA = {
+  '模型运作逻辑': [
+    {
+      title: 'Suno 的 AI 模型到底是什么？',
+      body: `<p>Suno 的核心是一个<strong>音乐生成大模型</strong>，原理类似 ChatGPT，但它学习的不是文字，而是海量的音乐音频。它把歌曲拆解成极小的声音片段（Audio Tokens），学习旋律、和声、节奏、音色之间的统计规律。</p>
+<p>当你输入一段提示词（Prompt），模型会：</p>
+<ul>
+<li><strong>理解语义</strong> — 将你的英文描述转化为内部的"风格向量"，定位到它学过的某一片音乐空间</li>
+<li><strong>逐步生成</strong> — 像写作文一样，从第一个音符开始，一步步预测下一个最合理的声音片段</li>
+<li><strong>受到约束</strong> — 你的提示词就像"方向盘"，引导生成过程始终在你描述的风格范围内</li>
+</ul>
+<div class="tip">理解这个逻辑很重要：Suno 不是在"拼接"已有的歌曲片段，而是在"即兴创作"。所以每次生成的结果都不同，即使提示词完全一样。</div>`
+    },
+    {
+      title: '提示词是怎么影响生成结果的？',
+      body: `<p>提示词在模型内部被转化为一组<strong>多维向量</strong>，每个关键词都会"拉动"生成方向。可以想象成一个巨大的音乐地图：</p>
+<ul>
+<li><strong>"pop"</strong> 把你拉到流行区域 — 4/4 拍、简单和弦、朗朗上口的旋律</li>
+<li><strong>"dark"</strong> 把你拉向低沉的音色和小调</li>
+<li><strong>"piano"</strong> 让钢琴音色的权重升高</li>
+<li>多个词叠加时，模型会尝试找到<strong>所有约束的交集</strong></li>
+</ul>
+<p>这也解释了为什么关键词冲突（比如同时写 "cheerful" 和 "dark"）会让模型困惑 — 它找不到合理的交集，只能在两个方向间摇摆，产出混乱的结果。</p>
+<div class="tip">关键词不是越多越好。3-8 个精准的关键词，远好过 20 个模糊堆叠的词。模型对前几个关键词的权重最高，后面的词影响递减。</div>`
+    },
+    {
+      title: '为什么同样的提示词，每次出来不一样？',
+      body: `<p>这是因为模型在生成时带有<strong>随机性（Temperature）</strong>。每一步预测下一个声音片段时，它不会固定选概率最高的那个，而是按概率随机采样。这种机制保证了创造力和多样性。</p>
+<p>你可以把它理解成：提示词决定了"画的主题"，但每次下笔的笔触、力度、色彩深浅都有微妙的随机变化。</p>
+<div class="tip">这就是为什么 Suno 的核心工作流是"大量生成 + 筛选"而不是"精准控制一次出片"。好的创作者通常对同一个提示词生成 5-10 次，然后从中挑选最好的。</div>`
+    },
+    {
+      title: '歌词和旋律的关系',
+      body: `<p>当你同时提供歌词和风格提示词时，模型面临的是一个<strong>双重约束</strong>的任务：</p>
+<ul>
+<li><strong>歌词侧</strong> — 决定音节数量、押韵模式、情绪起伏，影响旋律的节奏和走向</li>
+<li><strong>风格侧</strong> — 决定和声、音色、速度、整体氛围</li>
+</ul>
+<p>模型会尝试让两者协调。但当歌词的情绪与风格描述矛盾时（比如悲伤的词配欢快的风格），结果往往不理想。</p>
+<div class="tip">写歌词时，注意每句的音节数不要相差太大，保持一定的韵律感。模型对"音节整齐、有韵脚"的歌词理解能力明显更强。</div>`
+    },
+  ],
+  '基本功能介绍': [
+    {
+      title: 'Create（创建歌曲）',
+      body: `<p>Suno 的核心功能入口，有两种模式：</p>
+<ul>
+<li><strong>Simple Mode（简易模式）</strong> — 只需输入一段描述，Suno 自动生成歌词 + 旋律 + 编曲。适合灵感探索阶段。</li>
+<li><strong>Custom Mode（自定义模式）</strong> — 分别填写 Style Prompt（风格提示词）和 Lyrics（歌词），给你更多控制力。推荐日常使用这个模式。</li>
+</ul>
+<div class="tip">Style Prompt 栏填风格关键词（如 "indie pop, acoustic guitar, female vocal, dreamy"），Lyrics 栏填歌词。两个栏不要混淆 — 风格栏写歌词或歌词栏写风格，效果都会很差。</div>`
+    },
+    {
+      title: 'Instrumental（纯器乐模式）',
+      body: `<p>勾选 Instrumental 开关后，生成的曲目不包含任何人声，只有器乐编曲。</p>
+<p>适用场景：</p>
+<ul>
+<li>制作背景音乐（视频/播客/游戏）</li>
+<li>先用纯器乐确认编曲方向，再叠加人声</li>
+<li>创作纯音乐作品（钢琴曲、氛围音乐等）</li>
+</ul>
+<div class="tip">纯器乐模式下，风格提示词可以写得更细致。由于模型不需要分配精力给人声，乐器的表现力反而会更丰富。</div>`
+    },
+    {
+      title: 'Extend（延长/续写）',
+      body: `<p>对已生成的歌曲进行续写，在原有的基础上往后生成更多内容。</p>
+<ul>
+<li>可以指定从歌曲的某个时间点开始续写</li>
+<li>可以在续写时修改风格提示词，制造段落间的变化（比如从安静的主歌过渡到爆发的副歌）</li>
+<li>续写时可以提供新的歌词段落</li>
+</ul>
+<div class="tip">Extend 是精修歌曲结构的核心工具。专业流程：先生成一个好的开头 → Extend 副歌 → Extend 桥段 → Extend 尾奏，逐段打磨。</div>`
+    },
+    {
+      title: 'Remaster / Cover（重新编曲）',
+      body: `<p>对已有歌曲用不同的风格重新编曲。保留原始旋律和歌词，但改变整体音色和编曲风格。</p>
+<ul>
+<li><strong>Remaster</strong> — 在原风格基础上提升音质和丰富度</li>
+<li><strong>Cover</strong> — 用完全不同的风格重新演绎（比如把摇滚变成 Bossa Nova）</li>
+</ul>
+<div class="tip">Cover 功能特别适合"跨界混搭"：你可能在 lo-fi 模式下写出了好旋律，但想听听它变成管弦乐版本会怎样。一首好的旋律 + 多种 Cover 风格 = 快速积累作品。</div>`
+    },
+    {
+      title: 'Personas（人声角色）',
+      body: `<p>Suno 允许你创建和保存特定的人声角色（Persona），复用在不同歌曲中。</p>
+<ul>
+<li>上传一段参考音频，Suno 会学习其音色特征</li>
+<li>一个 Persona 可以在多首歌中反复使用，保持音色一致</li>
+<li>适合打造个人 IP 或虚拟歌手形象</li>
+</ul>
+<div class="tip">创建 Persona 时，参考音频选择"干声"（无伴奏的清唱）效果最好。带有强烈混响或伴奏的音频会干扰模型对音色的学习。</div>`
+    },
+    {
+      title: 'Stems（分轨导出）',
+      body: `<p>将生成的歌曲拆分成独立的音轨导出，通常包括：</p>
+<ul>
+<li><strong>Vocals</strong> — 人声轨道</li>
+<li><strong>Drums</strong> — 鼓和打击乐</li>
+<li><strong>Bass</strong> — 低音</li>
+<li><strong>Other</strong> — 其他乐器</li>
+</ul>
+<p>导出分轨后，你可以在 DAW（如 GarageBand、Logic、FL Studio）中进一步编辑和混音。</p>
+<div class="tip">Stems 是把 Suno 从"玩具"变成"工具"的关键功能。导出分轨 → 在 DAW 中精修人声 / 调整乐器平衡 / 叠加自己的录音，这才是专业的工作流。</div>`
+    },
+  ],
+  '常见问题与解法': [
+    {
+      title: '人声含糊不清、吐字模糊',
+      body: `<p><strong>原因：</strong>歌词音节过密、连续辅音过多，或者风格与语言不匹配。</p>
+<p><strong>解法：</strong></p>
+<ul>
+<li>简化歌词，每行控制在 8-15 个音节之间</li>
+<li>避免连续的爆破音和卷舌音堆叠（如 "struck through the thrashing storm"）</li>
+<li>在提示词中明确指定 "clear vocal" 或 "articulate singing"</li>
+<li>降低歌曲速度 — 快歌更容易出现吐字问题</li>
+</ul>
+<div class="compare"><div class="bad">&#10007; 过密的歌词：<br>"Through the thunderstorm crashing breathlessly against the shore"</div><div class="good">&#10003; 适当留白：<br>"Through the storm<br>Against the shore<br>Breathing in once more"</div></div>`
+    },
+    {
+      title: '风格混乱、出来的不是想要的感觉',
+      body: `<p><strong>原因：</strong>提示词中的关键词互相矛盾，或者混用了不同领域的术语。</p>
+<p><strong>解法：</strong></p>
+<ul>
+<li>确保风格词之间不冲突（"aggressive" 和 "gentle" 不要同时出现）</li>
+<li>先用 1-2 个核心风格词生成，确认方向后再逐步添加细节词</li>
+<li>使用更具体的子风格代替模糊的大类（用 "shoegaze" 代替 "rock"）</li>
+<li>参考本宝典的风格模块，了解每个风格的典型特征</li>
+</ul>
+<div class="tip">黄金法则：核心风格 1-2 个 + 乐器 1-3 个 + 氛围 1 个 + 人声描述 1 个 = 最稳定的出片公式。</div>`
+    },
+    {
+      title: '歌曲结构不完整、突然断掉或无限循环',
+      body: `<p><strong>原因：</strong>没有给模型明确的结构指令，它自己判断结构能力有限。</p>
+<p><strong>解法：</strong></p>
+<ul>
+<li>在歌词中用方括号标注段落结构：[Verse] [Chorus] [Bridge] [Outro]</li>
+<li>在 [Outro] 段写上 "fade out" 或几个重复短句 + "..."（暗示结束）</li>
+<li>使用 Extend 功能手动控制结构：先生成前半段，再 Extend 后半段</li>
+<li>避免歌词过长 — 单次生成控制在 2-3 个段落为佳</li>
+</ul>
+<div class="compare"><div class="bad">&#10007; 无结构标注：<br>"我走在路上<br>看着天空<br>想起了你<br>心里很难过..."</div><div class="good">&#10003; 清晰的结构：<br>"[Verse 1]<br>我走在路上 看着天空<br>想起了你的笑容<br><br>[Chorus]<br>你是我的光<br>照亮这条路..."</div></div>`
+    },
+    {
+      title: '乐器没出来、或者出来了不想要的乐器',
+      body: `<p><strong>原因：</strong>某些风格有"默认乐器"，模型会自动补充；而你指定的乐器可能权重不够高。</p>
+<p><strong>解法：</strong></p>
+<ul>
+<li>把最重要的乐器放在提示词的前面位置（权重更高）</li>
+<li>如果不想要某个乐器，试试 "no drums" / "no guitar" 等负面提示（不保证 100% 有效，但有帮助）</li>
+<li>选择与目标乐器天然匹配的风格（想要萨克斯？用 "jazz" 比用 "pop" 成功率高得多）</li>
+<li>在纯器乐模式下，乐器的控制力度更强</li>
+</ul>
+<div class="tip">Suno 对"有什么"的理解远好于"没有什么"。与其写 "no drums, no bass"，不如正面描述你想要的："solo piano, minimal arrangement"。</div>`
+    },
+    {
+      title: '中文歌词被唱成了英文 / 发音奇怪',
+      body: `<p><strong>原因：</strong>模型默认倾向英文，中文训练数据相对较少，发音容易偏差。</p>
+<p><strong>解法：</strong></p>
+<ul>
+<li>在 Style Prompt 中明确写 "mandarin chinese vocal" 或 "chinese pop"</li>
+<li>中文歌词尽量使用常用词汇，避免生僻字和文言文</li>
+<li>每行歌词不宜太长，7-12 个字为佳</li>
+<li>如果部分句子发音仍然不准，可以用拼音替代汉字（如用 "wo ai ni" 代替 "我爱你"）</li>
+<li>多生成几次，中文歌的成功率波动比英文大</li>
+</ul>
+<div class="tip">终极方案：用 Suno 生成纯器乐伴奏 → 导出 Stems → 自己录制中文人声 → 在 DAW 中合成。这是目前中文歌质量最高的工作流。</div>`
+    },
+    {
+      title: '音质闷 / 不够清晰 / 听起来"糊"',
+      body: `<p><strong>原因：</strong>风格关键词过多导致模型"妥协"，或使用了天然偏糊的风格（如 lo-fi、shoegaze）。</p>
+<p><strong>解法：</strong></p>
+<ul>
+<li>精简提示词，减少互相拉扯的关键词</li>
+<li>添加 "high quality production"、"crisp mix"、"professional mastering" 等音质相关提示</li>
+<li>使用 Remaster 功能对满意的作品进行二次提升</li>
+<li>导出 Stems 后在 DAW 中做 EQ 和母带处理</li>
+</ul>
+<div class="tip">Suno 生成的音频本身是压缩格式，不要期待 CD 级别的音质。但通过 Remaster + 后期处理，可以达到相当不错的网络发布标准。</div>`
+    },
+    {
+      title: '生成的歌太"套路"、千篇一律',
+      body: `<p><strong>原因：</strong>使用了太常见的风格组合，模型倾向于生成统计上最"安全"的结果。</p>
+<p><strong>解法：</strong></p>
+<ul>
+<li>混搭不同领域的风格词（如 "bossa nova meets electronic" / "folk with trap beats"）</li>
+<li>加入具体的情境描述代替抽象形容（"late night drive on empty highway" 比 "chill" 有效得多）</li>
+<li>使用冷门子风格代替大众风格（用 "city pop" 代替 "pop"，用 "post-punk" 代替 "rock"）</li>
+<li>尝试 "in the style of [具体年代]"（如 "90s production" / "70s analog warmth"）</li>
+</ul>
+<div class="tip">最好的提示词往往不是音乐术语的堆砌，而是一个有画面感的场景描述 + 几个精准的音乐关键词。比如："A midnight jazz ballad in a smoky bar, with brushed drums, upright bass, and a sultry female vocal whispering the blues."</div>`
+    },
+  ],
+};
+
+// ══════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════
+const state = {
+  tags: [],
+  history: JSON.parse(localStorage.getItem('promptHistory')||'[]'),
+  currentAudio: null, currentSongId: null,
+  expandedGenre: null, genreFilter: 'all',
+  activeSubTab: {structure: null, instruments: null, vocals: null, guide: null},
+};
+
+// ══════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  initTabs(); renderStructure(); renderInstruments(); renderGenres(); renderVocals(); renderGuide(); renderHistory(); initSearch();
+});
+
+function initTabs() {
+  document.querySelectorAll('.tab').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+      document.querySelectorAll('.module').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      document.getElementById('mod-' + t.dataset.tab).classList.add('active');
+    });
+  });
+}
+
+// ══════════════════════════════════════════
+//  MODULE 1: STRUCTURE (+ mood, tempo, special)
+// ══════════════════════════════════════════
+function renderStructure() {
+  const cats = Object.keys(STRUCTURE_DATA);
+  const active = state.activeSubTab.structure || cats[0];
+  const tabsEl = document.getElementById('structSubTabs');
+  tabsEl.innerHTML = cats.map(c =>
+    `<div class="sub-tab ${c===active?'active':''}" onclick="filterStruct('${c}',this)">${c}</div>`
+  ).join('');
+  showStructCat(active);
+}
+function filterStruct(cat, el) {
+  state.activeSubTab.structure = cat;
+  el.parentElement.querySelectorAll('.sub-tab').forEach(x => x.classList.remove('active'));
+  el.classList.add('active');
+  showStructCat(cat);
+}
+function showStructCat(cat) {
+  const list = document.getElementById('structList');
+  const items = STRUCTURE_DATA[cat] || [];
+  const tagType = getTagType(cat);
+  list.innerHTML = items.map(it => termRowHTML(it.cn, it.en, tagType, it.desc)).join('');
+}
+
+// ══════════════════════════════════════════
+//  MODULE 2: INSTRUMENTS
+// ══════════════════════════════════════════
+function renderInstruments() {
+  const cats = Object.keys(INSTRUMENT_DATA);
+  const active = state.activeSubTab.instruments || cats[0];
+  const tabsEl = document.getElementById('instrSubTabs');
+  tabsEl.innerHTML = cats.map(c =>
+    `<div class="sub-tab ${c===active?'active':''}" onclick="filterInstr('${c}',this)">${c}</div>`
+  ).join('');
+  showInstrCat(active);
+}
+function filterInstr(cat, el) {
+  state.activeSubTab.instruments = cat;
+  el.parentElement.querySelectorAll('.sub-tab').forEach(x => x.classList.remove('active'));
+  el.classList.add('active');
+  showInstrCat(cat);
+}
+function showInstrCat(cat) {
+  document.getElementById('instrList').innerHTML = (INSTRUMENT_DATA[cat]||[]).map(it => termRowHTML(it.cn, it.en, 'instrument')).join('');
+}
+
+// ══════════════════════════════════════════
+//  MODULE 3: GENRES (with + button)
+// ══════════════════════════════════════════
+function renderGenres() {
+  const filtersEl = document.getElementById('genreFilters');
+  filtersEl.innerHTML = CATEGORIES.map(c =>
+    `<div class="cat-chip ${c.id==='all'?'active':''}" onclick="filterGenre('${c.id}',this)" data-catid="${c.id}">${c.name}</div>`
+  ).join('');
+  renderGenreCards();
+}
+function filterGenre(catId, el) {
+  state.genreFilter = catId;
+  document.querySelectorAll('.cat-chip').forEach(x => x.classList.toggle('active', x.dataset.catid === catId));
+  renderGenreCards();
+}
+function renderGenreCards() {
+  const container = document.getElementById('genreCards');
+  const filtered = state.genreFilter === 'all' ? GENRES : GENRES.filter(g => g.cat === state.genreFilter);
+  container.innerHTML = filtered.map(g => {
+    const isExpanded = state.expandedGenre === g.id;
+    const isAdded = state.tags.some(t => t.type === 'genre' && t.en === g.name.toLowerCase());
+    const songListHTML = g.songs.length ? g.songs.map((s, i) =>
+      `<div class="song-item ${state.currentSongId===g.id+'-'+i?'playing':''}" onclick="event.stopPropagation();playSong('${g.id+'-'+i}','${s.u}',this)">
+        <div class="song-play-btn">${state.currentSongId===g.id+'-'+i?'&#9646;&#9646;':'&#9654;'}</div>
+        <div class="song-info"><div class="song-title">${s.t}</div><div class="song-artist">${s.a}</div></div>
+      </div>`
+    ).join('') : '<div style="font-size:12px;color:var(--text-muted)">暂无试听</div>';
+
+    return `<div class="card genre-card" onclick="toggleGenreExpand('${g.id}')">
+      <div class="genre-add ${isAdded?'added':''}" onclick="event.stopPropagation();addTag('genre','${g.name.toLowerCase()}','${g.nameZh}')" title="加入生成器">+</div>
+      <div class="card-cn">${g.nameZh}</div>
+      <div class="card-en">${g.name}</div>
+      <div class="card-desc">${g.desc}</div>
+      <div class="card-tags">
+        ${g.tags.slice(0, 4).map(t => `<span class="tag" onclick="event.stopPropagation();addTag('genre','${t}','${g.nameZh}: ${t}')">${t}</span>`).join('')}
+      </div>
+      <div class="genre-detail ${isExpanded?'open':''}">
+        <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px">代表艺人: ${g.artists.join(' / ')}</div>
+        <div style="font-size:12px;font-weight:600;margin-bottom:8px;color:var(--text-secondary)">试听</div>
+        <div class="song-list">${songListHTML}</div>
+        ${state.currentSongId&&state.currentSongId.startsWith(g.id)?'<div class="progress-bar" onclick="event.stopPropagation();seekAudio(event,this)"><div class="progress-fill" id="prog-'+g.id+'" style="width:0%"></div></div>':''}
+      </div>
+    </div>`;
+  }).join('');
+}
+function toggleGenreExpand(id) {
+  state.expandedGenre = state.expandedGenre === id ? null : id;
+  renderGenreCards();
+}
+
+function playSong(songId, url) {
+  if (!url) return;
+  if (state.currentSongId === songId) {
+    if (state.currentAudio && !state.currentAudio.paused) { state.currentAudio.pause(); state.currentSongId = null; renderGenreCards(); return; }
+  }
+  if (state.currentAudio) state.currentAudio.pause();
+  state.currentAudio = new Audio(url);
+  state.currentSongId = songId;
+  state.currentAudio.play().catch(()=>{});
+  state.currentAudio.addEventListener('ended', () => { state.currentSongId = null; renderGenreCards(); });
+  state.currentAudio.addEventListener('timeupdate', () => {
+    const prog = document.getElementById('prog-' + songId.split('-')[0]);
+    if (prog && state.currentAudio.duration) prog.style.width = (state.currentAudio.currentTime / state.currentAudio.duration * 100) + '%';
+  });
+  renderGenreCards();
+}
+function seekAudio(e, bar) {
+  if (!state.currentAudio) return;
+  const rect = bar.getBoundingClientRect();
+  state.currentAudio.currentTime = ((e.clientX - rect.left) / rect.width) * state.currentAudio.duration;
+}
+
+// ══════════════════════════════════════════
+//  MODULE 4: VOCALS
+// ══════════════════════════════════════════
+function renderVocals() {
+  const cats = Object.keys(VOCAL_DATA);
+  const active = state.activeSubTab.vocals || cats[0];
+  const tabsEl = document.getElementById('vocalSubTabs');
+  tabsEl.innerHTML = cats.map(c =>
+    `<div class="sub-tab ${c===active?'active':''}" onclick="filterVocal('${c}',this)">${c}</div>`
+  ).join('');
+  showVocalCat(active);
+}
+function filterVocal(cat, el) {
+  state.activeSubTab.vocals = cat;
+  el.parentElement.querySelectorAll('.sub-tab').forEach(x => x.classList.remove('active'));
+  el.classList.add('active');
+  showVocalCat(cat);
+}
+function showVocalCat(cat) {
+  document.getElementById('vocalList').innerHTML = (VOCAL_DATA[cat]||[]).map(it => termRowHTML(it.cn, it.en, 'vocal', it.ex)).join('');
+}
+
+// ══════════════════════════════════════════
+//  MODULE 5: GUIDE
+// ══════════════════════════════════════════
+function renderGuide() {
+  const cats = Object.keys(GUIDE_DATA);
+  const active = state.activeSubTab.guide || cats[0];
+  const tabsEl = document.getElementById('guideSubTabs');
+  tabsEl.innerHTML = cats.map(c =>
+    `<div class="sub-tab ${c===active?'active':''}" onclick="filterGuide('${c}',this)">${c}</div>`
+  ).join('');
+  showGuideCat(active);
+}
+function filterGuide(cat, el) {
+  state.activeSubTab.guide = cat;
+  el.parentElement.querySelectorAll('.sub-tab').forEach(x => x.classList.remove('active'));
+  el.classList.add('active');
+  showGuideCat(cat);
+}
+function showGuideCat(cat) {
+  const items = GUIDE_DATA[cat] || [];
+  document.getElementById('guideContent').innerHTML = `<div class="guide-article">` +
+    items.map((it, i) =>
+      `<div class="guide-block"><h4><span class="num">${i+1}</span>${it.title}</h4>${it.body}</div>`
+    ).join('') + `</div>`;
+}
+
+// ══════════════════════════════════════════
+//  SHARED
+// ══════════════════════════════════════════
+function termRowHTML(cn, en, type, extra) {
+  const isAdded = state.tags.some(t => t.en === en);
+  return `<div class="term-row">
+    <div class="term-cn">${cn}</div>
+    <div class="term-en">${en}</div>
+    ${extra ? `<div style="font-size:11px;color:var(--text-muted);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${extra}">${extra}</div>` : ''}
+    <div class="term-actions">
+      <div class="copy-btn" onclick="copyText('${(extra||en).replace(/'/g,"\\'")}',this)">复制</div>
+      <div class="add-btn ${isAdded?'added':''}" onclick="addTag('${type}','${en.replace(/'/g,"\\'")}','${cn.replace(/'/g,"\\'")}')" title="加入生成器">+</div>
+    </div>
+  </div>`;
+}
+
+// ══════════════════════════════════════════
+//  PROMPT GENERATOR
+// ══════════════════════════════════════════
+function toggleGenerator() { document.getElementById('genPanel').classList.toggle('open'); }
+
+function addTag(type, en, cn) {
+  const exists = state.tags.findIndex(t => t.en === en);
+  if (exists >= 0) { state.tags.splice(exists, 1); }
+  else { state.tags.push({type, en, cn}); }
+  updateGenerator(); updateBadge();
+  refreshCurrentList();
+}
+
+function refreshCurrentList() {
+  const activeTab = document.querySelector('.tab.active')?.dataset.tab;
+  if (activeTab === 'structure') renderStructure();
+  if (activeTab === 'instruments') renderInstruments();
+  if (activeTab === 'vocals') renderVocals();
+  if (activeTab === 'genres') renderGenreCards();
+}
+
+function removeTag(idx) { state.tags.splice(idx, 1); updateGenerator(); updateBadge(); refreshCurrentList(); }
+
+function updateBadge() {
+  const badge = document.getElementById('fabBadge');
+  badge.textContent = state.tags.length;
+  badge.style.display = state.tags.length > 0 ? 'flex' : 'none';
+}
+
+function updateGenerator() {
+  const el = document.getElementById('genChips');
+  if (state.tags.length === 0) {
+    el.innerHTML = '<span class="gen-empty">从左侧模块点选关键词...</span>';
+  } else {
+    const grouped = {};
+    state.tags.forEach((t, i) => {
+      if (!grouped[t.type]) grouped[t.type] = [];
+      grouped[t.type].push({...t, idx: i});
+    });
+    const sortedTypes = Object.keys(grouped).sort((a,b) => (TAG_TYPE_MAP[a]?.order||99) - (TAG_TYPE_MAP[b]?.order||99));
+    el.innerHTML = sortedTypes.map(type => {
+      const label = TAG_TYPE_MAP[type]?.label || type;
+      return `<div style="width:100%;margin-bottom:6px">
+        <div style="font-size:10px;color:var(--text-muted);font-weight:600;letter-spacing:.05em;margin-bottom:3px">${label}</div>
+        <div class="gen-chips">${grouped[type].map(t => `<div class="gen-chip"><span>${t.cn}</span><span class="remove" onclick="removeTag(${t.idx})">&#215;</span></div>`).join('')}</div>
+      </div>`;
+    }).join('');
+  }
+  const output = document.getElementById('genOutput');
+  if (state.tags.length === 0) {
+    output.innerHTML = '<div class="gen-output-empty">选择一些标签后，这里会自动生成 Suno Prompt</div>';
+    return;
+  }
+  const {en, zh} = generatePrompt();
+  output.innerHTML = `<div class="gen-output-en">${en}</div><div class="gen-output-zh">${zh}</div>`;
+}
+
+function generatePrompt() {
+  const get = type => state.tags.filter(t => t.type === type);
+  const genres = get('genre').map(t => t.en);
+  const instruments = get('instrument').map(t => t.en);
+  const moods = get('mood').map(t => t.en);
+  const vocals = get('vocal').map(t => t.en);
+  const structures = get('structure').map(t => t.en);
+  const tempos = get('tempo').map(t => t.en);
+  const specials = get('special').map(t => t.en);
+
+  let parts = [];
+  // 1. Genre
+  if (genres.length) {
+    const g = genres.join(' and ');
+    parts.push((/^[aeiou]/i.test(g)?'An ':'A ') + g + ' track');
+  } else { parts.push('A song'); }
+  // 2. Mood
+  if (moods.length) parts.push('with ' + (moods.length > 1 ? 'a ' + moods.join(' and ') + ' atmosphere' : 'a ' + moods[0] + ' atmosphere'));
+  // 3. Instruments
+  if (instruments.length) parts.push((moods.length ? ', featuring ' : 'featuring ') + formatList(instruments));
+  // 4. Vocals
+  if (vocals.length) parts.push((instruments.length||moods.length ? ', with ' : 'with ') + vocals.join(' and '));
+  // 5. Structure
+  if (structures.length) parts.push('. Structure: ' + structures.join(', '));
+  // 6. Tempo
+  if (tempos.length) parts.push('. ' + tempos[0]);
+  // 7. Special
+  if (specials.length) parts.push('. ' + specials.join('. '));
+
+  let en = parts.join(' ');
+  if (!en.endsWith('.')) en += '.';
+  en = en.replace(/ \./g, '.').replace(/\.\./g, '.').replace(/ ,/g, ',');
+  en = en.charAt(0).toUpperCase() + en.slice(1);
+
+  const zhParts = [];
+  if (genres.length) zhParts.push('风格: ' + get('genre').map(t=>t.cn).join('、'));
+  if (moods.length) zhParts.push('氛围: ' + get('mood').map(t=>t.cn).join('、'));
+  if (instruments.length) zhParts.push('乐器: ' + get('instrument').map(t=>t.cn).join('、'));
+  if (vocals.length) zhParts.push('人声: ' + get('vocal').map(t=>t.cn).join('、'));
+  if (structures.length) zhParts.push('段落: ' + get('structure').map(t=>t.cn).join('、'));
+  if (tempos.length) zhParts.push('速度: ' + get('tempo').map(t=>t.cn).join('、'));
+  if (specials.length) zhParts.push('特殊: ' + get('special').map(t=>t.cn).join('、'));
+  return {en, zh: zhParts.join(' | ')};
+}
+
+function formatList(arr) {
+  if (arr.length <= 1) return arr.join('');
+  return arr.slice(0, -1).join(', ') + ' and ' + arr[arr.length - 1];
+}
+
+function copyPrompt() {
+  if (state.tags.length === 0) return showToast('请先选择一些标签');
+  const {en} = generatePrompt();
+  navigator.clipboard.writeText(en).then(() => {
+    showToast('Prompt 已复制');
+    state.history.unshift({text: en, time: Date.now()});
+    if (state.history.length > 10) state.history.pop();
+    localStorage.setItem('promptHistory', JSON.stringify(state.history));
+    renderHistory();
+  });
+}
+
+function clearSelections() {
+  state.tags = []; updateGenerator(); updateBadge(); refreshCurrentList();
+}
+
+function randomPrompt() {
+  state.tags = [];
+  const rg = GENRES[Math.floor(Math.random() * GENRES.length)];
+  state.tags.push({type:'genre', en: rg.name.toLowerCase(), cn: rg.nameZh});
+  const allInstr = Object.values(INSTRUMENT_DATA).flat();
+  const ri = allInstr[Math.floor(Math.random() * allInstr.length)];
+  state.tags.push({type:'instrument', en: ri.en, cn: ri.cn});
+  const moods = STRUCTURE_DATA['氛围与情绪'];
+  const rm = moods[Math.floor(Math.random() * moods.length)];
+  state.tags.push({type:'mood', en: rm.en, cn: rm.cn});
+  const allVocals = Object.values(VOCAL_DATA).flat();
+  const rv = allVocals[Math.floor(Math.random() * allVocals.length)];
+  state.tags.push({type:'vocal', en: rv.en, cn: rv.cn});
+  updateGenerator(); updateBadge();
+  if (!document.getElementById('genPanel').classList.contains('open')) document.getElementById('genPanel').classList.add('open');
+}
+
+function renderHistory() {
+  const section = document.getElementById('genHistorySection');
+  const list = document.getElementById('genHistoryList');
+  if (state.history.length === 0) { section.style.display = 'none'; return; }
+  section.style.display = 'block';
+  list.innerHTML = state.history.map((h, i) => {
+    const d = new Date(h.time);
+    const timeStr = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0') + ' ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+    return `<div class="history-item" onclick="copyText('${h.text.replace(/'/g,"\\'")}',null)">
+      <div class="history-text">${h.text}</div>
+      <div class="history-time">${timeStr}</div>
+      <div class="history-del" onclick="event.stopPropagation();deleteHistory(${i})">&#215;</div>
+    </div>`;
+  }).join('');
+}
+function deleteHistory(idx) {
+  state.history.splice(idx, 1);
+  localStorage.setItem('promptHistory', JSON.stringify(state.history));
+  renderHistory();
+}
+
+function copyText(text, btnEl) {
+  navigator.clipboard.writeText(text).then(() => {
+    if (btnEl) { btnEl.textContent = '✓'; btnEl.classList.add('copied'); setTimeout(() => { btnEl.textContent = '复制'; btnEl.classList.remove('copied'); }, 1200); }
+    showToast('已复制: ' + text.slice(0, 30));
+  });
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg; toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 1500);
+}
+
+function initSearch() {
+  const input = document.getElementById('globalSearch');
+  input.addEventListener('input', () => {
+    const q = input.value.toLowerCase().trim();
+    if (!q) { refreshCurrentList(); return; }
+    const activeTab = document.querySelector('.tab.active')?.dataset.tab;
+    if (activeTab === 'structure') {
+      const all = []; Object.entries(STRUCTURE_DATA).forEach(([cat, items]) => items.forEach(it => { if (it.cn.includes(q)||it.en.toLowerCase().includes(q)) all.push({...it, tagType: getTagType(cat)}); }));
+      document.getElementById('structList').innerHTML = all.map(it => termRowHTML(it.cn, it.en, it.tagType, it.desc)).join('') || '<div style="padding:20px;color:var(--text-muted)">未找到匹配结果</div>';
+    }
+    if (activeTab === 'instruments') {
+      const all = Object.values(INSTRUMENT_DATA).flat().filter(it => it.cn.includes(q)||it.en.toLowerCase().includes(q));
+      document.getElementById('instrList').innerHTML = all.map(it => termRowHTML(it.cn, it.en, 'instrument')).join('') || '<div style="padding:20px;color:var(--text-muted)">未找到匹配结果</div>';
+    }
+    if (activeTab === 'vocals') {
+      const all = Object.values(VOCAL_DATA).flat().filter(it => it.cn.includes(q)||it.en.toLowerCase().includes(q));
+      document.getElementById('vocalList').innerHTML = all.map(it => termRowHTML(it.cn, it.en, 'vocal', it.ex)).join('') || '<div style="padding:20px;color:var(--text-muted)">未找到匹配结果</div>';
+    }
+    if (activeTab === 'genres') {
+      state.genreFilter = 'all';
+      const filtered = GENRES.filter(g => g.nameZh.includes(q)||g.name.toLowerCase().includes(q)||g.desc.includes(q)||g.tags.some(t => t.includes(q)));
+      document.getElementById('genreCards').innerHTML = filtered.length ? filtered.map(g => `<div class="card genre-card" onclick="toggleGenreExpand('${g.id}')">
+        <div class="genre-add" onclick="event.stopPropagation();addTag('genre','${g.name.toLowerCase()}','${g.nameZh}')" title="加入生成器">+</div>
+        <div class="card-cn">${g.nameZh}</div><div class="card-en">${g.name}</div>
+        <div class="card-desc">${g.desc}</div>
+        <div class="card-tags">${g.tags.slice(0,4).map(t=>`<span class="tag" onclick="event.stopPropagation();addTag('genre','${t}','${g.nameZh}: ${t}')">${t}</span>`).join('')}</div>
+      </div>`).join('') : '<div style="padding:20px;color:var(--text-muted)">未找到匹配结果</div>';
+    }
+  });
+}
+</script>
+</body>
+</html>
