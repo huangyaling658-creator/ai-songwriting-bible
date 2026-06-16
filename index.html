@@ -148,6 +148,49 @@ body{
 .guide-block .compare>div{padding:10px 14px;border-radius:6px;font-size:12px;line-height:1.7}
 .guide-block .bad{background:#fef2f2;border:1px solid #fecaca;color:#991b1b}
 .guide-block .good{background:#f0fdf4;border:1px solid #bbf7d0;color:#166534}
+.notebook-section{max-width:960px;margin:0 auto;padding:40px 32px 80px}
+.notebook-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.notebook-title{font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:700;letter-spacing:-.01em}
+.notebook-desc{font-size:12px;color:var(--text-muted);margin-top:2px}
+.notebook-add-btn{padding:8px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--bg-card);color:var(--text);transition:all .15s}
+.notebook-add-btn:hover{border-color:var(--accent);color:var(--accent)}
+.notebook-empty{text-align:center;padding:48px 20px;color:var(--text-muted);font-size:13px;font-style:italic}
+.note-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:12px;transition:box-shadow .2s}
+.note-card:hover{box-shadow:var(--shadow)}
+.note-card .note-top{display:flex;align-items:start;justify-content:space-between;gap:12px;margin-bottom:10px}
+.note-card .note-label{font-size:11px;font-weight:600;color:var(--accent);background:var(--accent-bg);padding:2px 10px;border-radius:4px;flex-shrink:0}
+.note-card .note-time{font-size:11px;color:var(--text-muted);flex-shrink:0}
+.note-card .note-actions{display:flex;gap:6px;flex-shrink:0}
+.note-card .note-act{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text-muted);font-size:13px;transition:all .15s}
+.note-card .note-act:hover{border-color:var(--border-hover);color:var(--text)}
+.note-card .note-act.del:hover{border-color:#fecaca;color:#dc2626;background:#fef2f2}
+.note-card .note-content{font-size:13px;color:var(--text);line-height:1.8;white-space:pre-wrap;word-break:break-word}
+.note-card .note-remark{font-size:12px;color:var(--text-secondary);line-height:1.6;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);white-space:pre-wrap}
+.note-card textarea{width:100%;border:1px solid var(--border);border-radius:6px;padding:10px 12px;font-size:13px;font-family:inherit;line-height:1.7;resize:vertical;background:var(--bg);color:var(--text);outline:none;box-sizing:border-box}
+.note-card textarea:focus{border-color:var(--accent)}
+.note-card .note-edit-actions{display:flex;gap:8px;margin-top:10px;justify-content:flex-end}
+.note-card .note-save{padding:6px 16px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:none;background:var(--text);color:#fff;transition:all .15s}
+.note-card .note-save:hover{background:#292524}
+.note-card .note-cancel{padding:6px 16px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text-secondary);transition:all .15s}
+.note-card .note-cancel:hover{border-color:var(--border-hover);color:var(--text)}
+/* === Prompt 管理库 筛选条 === */
+.pm-bar{max-width:960px;margin:0 auto 18px;display:flex;flex-direction:column;gap:10px}
+.pm-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pm-lbl{font-size:11px;color:var(--text-muted);min-width:32px;flex-shrink:0}
+.pm-chip{padding:5px 13px;border-radius:20px;font-size:12px;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text-secondary);transition:all .15s;white-space:nowrap}
+.pm-chip:hover{border-color:var(--accent);color:var(--accent)}
+.pm-chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.pm-search{flex:1;min-width:160px;padding:7px 13px;border:1px solid var(--border);border-radius:8px;font-size:13px;background:var(--bg);color:var(--text);outline:none}
+.pm-search:focus{border-color:var(--accent)}
+.pm-tagchip{padding:4px 10px;border-radius:4px;font-size:11px;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text-muted);transition:all .15s}
+.pm-tagchip:hover,.pm-tagchip.active{border-color:var(--accent);color:var(--accent)}
+.note-card .note-name{font-size:14px;font-weight:600;color:var(--text)}
+.note-card .note-cat{font-size:11px;font-weight:600;padding:2px 10px;border-radius:4px;flex-shrink:0;background:var(--accent-bg);color:var(--accent)}
+.note-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.note-tag{font-size:11px;padding:3px 9px;border-radius:4px;background:var(--bg-hover);color:var(--text-secondary);cursor:pointer;border:none;transition:all .15s}
+.note-tag:hover{background:var(--border)}
+.note-copy-btn{margin-top:10px;width:100%;padding:7px;border:1px dashed var(--border);border-radius:7px;background:transparent;color:var(--text-muted);font-size:12px;cursor:pointer;transition:all .15s}
+.note-copy-btn:hover{border-color:var(--accent);color:var(--accent)}
 @media(max-width:768px){
   .search-box{width:100%;order:3}
   .generator-panel{width:calc(100vw - 32px);right:16px;bottom:84px}
@@ -218,6 +261,35 @@ body{
     <div class="sub-tabs" id="guideSubTabs"></div>
     <div id="guideContent"></div>
   </div>
+</div>
+<div class="notebook-section">
+  <div class="notebook-header">
+    <div>
+      <div class="notebook-title">Prompt 管理库</div>
+      <div class="notebook-desc">记录、分类、检索你的有效 Suno Prompt，数据保存在浏览器本地，刷新重启不丢失</div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="notebook-add-btn" onclick="pmAutoClassify()" title="按关键词把未分类的自动归类，纯本地无需联网">🪄 智能归类</button>
+      <button class="notebook-add-btn" onclick="addNote()">+ 新增 Prompt</button>
+    </div>
+  </div>
+  <div class="pm-bar">
+    <div class="pm-row"><span class="pm-lbl">类别</span><div id="pmCatBar" style="display:flex;gap:6px;flex-wrap:wrap"></div></div>
+    <div class="pm-row"><span class="pm-lbl">搜索</span><input class="pm-search" id="pmSearch" placeholder="搜索名称 / 内容 / 备注..." oninput="pmSearch(this.value)"><div id="pmTagBar" style="display:flex;gap:6px;flex-wrap:wrap"></div></div>
+  </div>
+  <div id="notebookList"></div>
+  <div class="notebook-empty" id="notebookEmpty">还没有记录，点击上方按钮添加你的第一条有效 Prompt</div>
+</div>
+<div class="notebook-section" style="padding-top:0">
+  <div class="notebook-header">
+    <div>
+      <div class="notebook-title">歌词记录本</div>
+      <div class="notebook-desc">收藏你喜欢的歌词、片段或灵感金句，数据保存在浏览器本地</div>
+    </div>
+    <button class="notebook-add-btn" onclick="addLyric()">+ 新增歌词</button>
+  </div>
+  <div id="lyricsList"></div>
+  <div class="notebook-empty" id="lyricsEmpty">还没有记录，点击上方按钮收藏第一段好歌词</div>
 </div>
 <div class="fab" id="fab" onclick="toggleGenerator()">
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M12 3v18M3 12h18"/></svg>
@@ -449,7 +521,7 @@ const CATEGORIES = [
   {id:'all',name:'全部'},{id:'electronic',name:'电子'},{id:'hiphop',name:'嘻哈 & R&B'},
   {id:'rock',name:'摇滚'},{id:'pop',name:'流行'},{id:'jazz',name:'爵士 & 蓝调'},
   {id:'classical',name:'古典'},{id:'folk',name:'民谣 & 乡村'},{id:'metal',name:'金属'},
-  {id:'world',name:'世界音乐'},{id:'chinese',name:'国风'},
+  {id:'world',name:'世界音乐'},{id:'chinese',name:'国风'},{id:'experimental',name:'实验/小众'},
 ];
 
 const GENRES = [
@@ -507,6 +579,49 @@ const GENRES = [
   {id:'chinese-style',name:'Chinese Style',nameZh:'中国风',cat:'chinese',desc:'五声音阶 + 民族乐器 + 流行框架',artists:['周杰伦','林俊杰','许嵩'],tags:['chinese style','pentatonic','erhu','guzheng'],songs:[]},
   {id:'gufeng',name:'GuFeng',nameZh:'古风',cat:'chinese',desc:'文言歌词 + 民族器乐 + 武侠仙侠',artists:['河图','银临'],tags:['gufeng','ancient chinese','bamboo flute','pipa'],songs:[]},
   {id:'chinese-edm',name:'Chinese EDM',nameZh:'国风电子',cat:'chinese',desc:'EDM/Trap 制作 + 民族乐器采样',artists:['Anti-General','徐梦圆'],tags:['chinese edm','electronic','guzheng drop','fusion'],songs:[]},
+  {id:'city-folk-cn',name:'City Folk',nameZh:'城市民谣',cat:'chinese',desc:'木吉他叙事 + 都市青年情绪 + 校园记忆',artists:['朴树','老狼','赵雷'],tags:['city folk','chinese folk','acoustic','storytelling'],songs:[{t:'平凡之路',a:'朴树'},{t:'成都',a:'赵雷'}]},
+  {id:'chinese-rock',name:'Chinese Rock',nameZh:'中国摇滚',cat:'chinese',desc:'呐喊式人声 + 时代叩问 + 北方酒气',artists:['崔健','万能青年旅店','二手玫瑰'],tags:['chinese rock','anthemic','distorted guitar','social'],songs:[{t:'一无所有',a:'崔健'},{t:'杀死那个石家庄人',a:'万能青年旅店'}]},
+  {id:'bedroom-pop',name:'Bedroom Pop',nameZh:'卧室流行',cat:'pop',desc:'低保真私人录音 + 柔软人声 + 亲密叙事',artists:['Clairo','Boy Pablo','Cuco'],tags:['bedroom pop','lo-fi','intimate','soft vocals'],songs:[{t:'Pretty Girl',a:'Clairo'},{t:'Lover Boy',a:'Phum Viphurit'}]},
+  {id:'art-pop',name:'Art Pop',nameZh:'艺术流行',cat:'pop',desc:'实验编曲 + 非常规结构 + 概念性叙事',artists:['Björk','FKA twigs','Caroline Polachek'],tags:['art pop','experimental','avant-garde','theatrical'],songs:[{t:'Hyperballad',a:'Björk'},{t:'Two Hands',a:'Caroline Polachek'}]},
+  {id:'k-rnb',name:'K-R&B',nameZh:'韩国R&B',cat:'pop',desc:'细腻韩语人声 + 都市电子节奏',artists:['DEAN','Crush','Heize'],tags:['k-r&b','smooth','korean','moody'],songs:[{t:'D (half moon)',a:'DEAN'},{t:'Beautiful',a:'Crush'}]},
+  {id:'drill',name:'Drill',nameZh:'钻头说唱',cat:'hiphop',desc:'滑音 808 + 阴冷氛围 + 街头叙事',artists:['Pop Smoke','Central Cee','Headie One'],tags:['drill','sliding 808','dark','uk drill'],songs:[{t:'Dior',a:'Pop Smoke'},{t:'Doja',a:'Central Cee'}]},
+  {id:'boom-bap',name:'Boom Bap',nameZh:'砰嗒说唱',cat:'hiphop',desc:'90 年代采样鼓机 + 重底鼓军鼓 + 黄金时代质感',artists:['Nas','A Tribe Called Quest','DJ Premier'],tags:['boom bap','90s','sampling','classic hip hop'],songs:[{t:'N.Y. State of Mind',a:'Nas'},{t:'C.R.E.A.M.',a:'Wu-Tang Clan'}]},
+  {id:'cloud-rap',name:'Cloud Rap',nameZh:'云端说唱',cat:'hiphop',desc:'空灵合成器 + 慵懒 flow + 飘浮氛围',artists:['Lil B','Yung Lean','Clams Casino'],tags:['cloud rap','dreamy','hazy','ethereal'],songs:[{t:'Ginseng Strip 2002',a:'Yung Lean'},{t:'I’m God',a:'Clams Casino'}]},
+  {id:'pop-punk',name:'Pop Punk',nameZh:'流行朋克',cat:'rock',desc:'高能三和弦 + 青春期口语化歌词 + 朗朗上口副歌',artists:['Blink-182','Green Day','Paramore'],tags:['pop punk','fast','catchy','melodic'],songs:[{t:'All the Small Things',a:'Blink-182'},{t:'Misery Business',a:'Paramore'}]},
+  {id:'emo',name:'Emo',nameZh:'情绪摇滚',cat:'rock',desc:'失真吉他 + 哽咽人声 + 自白式悲情',artists:['My Chemical Romance','Dashboard Confessional'],tags:['emo','emotional','angsty','distorted'],songs:[{t:'Welcome to the Black Parade',a:'My Chemical Romance'},{t:'Sugar, We’re Goin Down',a:'Fall Out Boy'}]},
+  {id:'math-rock',name:'Math Rock',nameZh:'数学摇滚',cat:'rock',desc:'奇数拍 + 复节奏 + 点弦清音吉他',artists:['toe','American Football','Tricot'],tags:['math rock','odd time','tapping','polyrhythm'],songs:[{t:'グッドバイ',a:'toe'},{t:'Never Meant',a:'American Football'}]},
+  {id:'garage-rock',name:'Garage Rock',nameZh:'车库摇滚',cat:'rock',desc:'毛坯感失真 + 简化编制 + 不修边幅能量',artists:['The White Stripes','The Strokes'],tags:['garage rock','raw','distortion','lo-fi'],songs:[{t:'Seven Nation Army',a:'The White Stripes'},{t:'Last Nite',a:'The Strokes'}]},
+  {id:'j-rock',name:'J-Rock',nameZh:'日本摇滚',cat:'rock',desc:'戏剧性副歌 + 动漫文化绑定 + 高情绪密度',artists:['ONE OK ROCK','RADWIMPS','凛として時雨'],tags:['j-rock','anime','emotional','dramatic'],songs:[{t:'前前前世',a:'RADWIMPS'},{t:'The Beginning',a:'ONE OK ROCK'}]},
+  {id:'doom-metal',name:'Doom Metal',nameZh:'厄运金属',cat:'metal',desc:'极慢速 + 极重音墙 + 末日感',artists:['Black Sabbath','Sleep'],tags:['doom metal','slow','heavy','sludge'],songs:[{t:'Black Sabbath',a:'Black Sabbath'},{t:'Dopesmoker',a:'Sleep'}]},
+  {id:'black-metal',name:'Black Metal',nameZh:'黑金属',cat:'metal',desc:'极速 tremolo + 嘶吼 + 原始 lo-fi 录音',artists:['Mayhem','Burzum','Emperor'],tags:['black metal','blast beat','tremolo','raw'],songs:[{t:'Freezing Moon',a:'Mayhem'},{t:'I Am the Black Wizards',a:'Emperor'}]},
+  {id:'metalcore',name:'Metalcore',nameZh:'金属核',cat:'metal',desc:'breakdown + 清嗓副歌 + 嘶吼主歌的明暗交错',artists:['Bring Me The Horizon','Killswitch Engage'],tags:['metalcore','breakdown','screamed vocals','melodic'],songs:[{t:'Throne',a:'Bring Me The Horizon'},{t:'My Curse',a:'Killswitch Engage'}]},
+  {id:'opera',name:'Opera',nameZh:'歌剧',cat:'classical',desc:'美声唱法 + 戏剧化叙事 + 大编制管弦伴奏',artists:['Pavarotti','Maria Callas'],tags:['opera','soprano','dramatic','italian'],songs:[{t:'Nessun Dorma',a:'Pavarotti'},{t:'Habanera (Carmen)',a:'Maria Callas'}]},
+  {id:'baroque',name:'Baroque',nameZh:'巴洛克',cat:'classical',desc:'对位法 + 羽管键琴 + 装饰繁复的旋律',artists:['Bach','Vivaldi','Handel'],tags:['baroque','harpsichord','ornate','counterpoint'],songs:[{t:'Toccata and Fugue in D minor',a:'Bach'},{t:'The Four Seasons - Spring',a:'Vivaldi'}]},
+  {id:'minimalism',name:'Minimalism',nameZh:'极简主义',cat:'classical',desc:'微小动机的反复演化 + 催眠般的稳定脉动',artists:['Philip Glass','Steve Reich','Arvo Pärt'],tags:['minimalism','repetitive','hypnotic','phasing'],songs:[{t:'Opening (Glassworks)',a:'Philip Glass'},{t:'Spiegel im Spiegel',a:'Arvo Pärt'}]},
+  {id:'game-soundtrack',name:'Game Soundtrack',nameZh:'游戏配乐',cat:'classical',desc:'主题动机 + 自适应编排 + 服务玩法情绪',artists:['植松伸夫','Jeremy Soule','光田康典'],tags:['game music','orchestral','epic','adaptive'],songs:[{t:'One Winged Angel (FF7)',a:'植松伸夫'},{t:'Dragonborn (Skyrim)',a:'Jeremy Soule'}]},
+  {id:'celtic',name:'Celtic',nameZh:'凯尔特',cat:'folk',desc:'风笛/锡笛 + 凯尔特节奏 + 神秘的不列颠群岛色彩',artists:['Enya','Loreena McKennitt','The Chieftains'],tags:['celtic','fiddle','tin whistle','mystical'],songs:[{t:'Orinoco Flow',a:'Enya'},{t:'The Mummers’ Dance',a:'Loreena McKennitt'}]},
+  {id:'americana',name:'Americana',nameZh:'美式根源',cat:'folk',desc:'乡村/蓝调/福音的根源融合 + 滑棒吉他',artists:['Wilco','Jason Isbell'],tags:['americana','roots','slide guitar','heartland'],songs:[{t:'Jesus, Etc.',a:'Wilco'},{t:'Cover Me Up',a:'Jason Isbell'}]},
+  {id:'singer-songwriter',name:'Singer-Songwriter',nameZh:'创作歌手',cat:'folk',desc:'木吉他/钢琴 + 高密度文学化歌词 + 个人叙事',artists:['Joni Mitchell','Phoebe Bridgers','陈绮贞'],tags:['singer-songwriter','acoustic','lyrical','intimate'],songs:[{t:'A Case of You',a:'Joni Mitchell'},{t:'Motion Sickness',a:'Phoebe Bridgers'}]},
+  {id:'afrobeat',name:'Afrobeat',nameZh:'非洲节奏',cat:'world',desc:'西非复节奏 + 长篇 Jam + 反建制人声',artists:['Fela Kuti','Tony Allen'],tags:['afrobeat','polyrhythm','horn section','jam'],songs:[{t:'Water No Get Enemy',a:'Fela Kuti'},{t:'Zombie',a:'Fela Kuti'}]},
+  {id:'amapiano',name:'Amapiano',nameZh:'阿马皮亚诺',cat:'world',desc:'南非house变体：log drum 低频 + 钢琴 + 慢律动',artists:['Kabza De Small','DJ Maphorisa'],tags:['amapiano','log drum','south africa','soulful'],songs:[{t:'Asibe Happy',a:'Kabza De Small'},{t:'Water',a:'Tyla'}]},
+  {id:'dancehall',name:'Dancehall',nameZh:'牙买加舞厅',cat:'world',desc:'数字化 Riddim + Toasting 唱法 + 高强度律动',artists:['Sean Paul','Vybz Kartel'],tags:['dancehall','riddim','jamaican','toasting'],songs:[{t:'Temperature',a:'Sean Paul'},{t:'Romping Shop',a:'Vybz Kartel'}]},
+  {id:'samba',name:'Samba',nameZh:'桑巴',cat:'world',desc:'巴西打击乐编队 + 切分律动 + 街头欢腾',artists:['Jorge Ben','Beth Carvalho'],tags:['samba','brazilian','percussion','carnival'],songs:[{t:'Mas Que Nada',a:'Jorge Ben'},{t:'Aquarela do Brasil',a:'Gal Costa'}]},
+  {id:'baile-funk',name:'Baile Funk',nameZh:'巴西放克',cat:'world',desc:'里约贫民窟节奏 + Tamborzão 鼓机 + 粗犷人声',artists:['Anitta','MC Kevinho'],tags:['baile funk','brazilian','tamborzão','street'],songs:[{t:'Envolver',a:'Anitta'},{t:'Olha a Explosão',a:'MC Kevinho'}]},
+  {id:'ska',name:'Ska',nameZh:'斯卡',cat:'world',desc:'反拍吉他 + 铜管 + 雷鬼前身的轻快节奏',artists:['The Specials','The Skatalites'],tags:['ska','off-beat guitar','horns','upbeat'],songs:[{t:'A Message to You, Rudy',a:'The Specials'},{t:'Guns of Navarone',a:'The Skatalites'}]},
+  {id:'arabic-pop',name:'Arabic Pop',nameZh:'阿拉伯流行',cat:'world',desc:'微分音音阶 + 乌德琴/卡龙琴 + 戏剧性旋律',artists:['Amr Diab','Fairuz'],tags:['arabic pop','oud','microtonal','middle eastern'],songs:[{t:'Tamally Maak',a:'Amr Diab'},{t:'Li Beirut',a:'Fairuz'}]},
+  {id:'k-traditional',name:'Korean Traditional',nameZh:'韩国国乐',cat:'world',desc:'伽倻琴/奚琴 + 板索里 + 韩民族五声',artists:['LEENALCHI','Park Bom-mae'],tags:['gugak','gayageum','pansori','korean'],songs:[{t:'Tiger Is Coming',a:'LEENALCHI'},{t:'Arirang',a:'传统民歌'}]},
+  {id:'hyperpop',name:'Hyperpop',nameZh:'超流行',cat:'experimental',desc:'失真/抖音化人声 + 极端动态 + 最大主义制作',artists:['100 gecs','SOPHIE','Charli XCX'],tags:['hyperpop','glitchy','pitched vocals','maximalist'],songs:[{t:'money machine',a:'100 gecs'},{t:'Vroom Vroom',a:'Charli XCX'}]},
+  {id:'vaporwave',name:'Vaporwave',nameZh:'蒸汽波',cat:'experimental',desc:'80-90 年代采样减速 + 怀旧广告美学',artists:['Macintosh Plus','Saint Pepsi'],tags:['vaporwave','slowed','nostalgic','sampled'],songs:[{t:'リサフランク420 / 現代のコンピュー',a:'Macintosh Plus'},{t:'Skylar Spence',a:'Saint Pepsi'}]},
+  {id:'chillwave',name:'Chillwave',nameZh:'慵懒电波',cat:'experimental',desc:'迷糊合成器 + 夏日蒸腾感 + 复古卡带质感',artists:['Washed Out','Toro y Moi'],tags:['chillwave','hazy','summery','retro synth'],songs:[{t:'Feel It All Around',a:'Washed Out'},{t:'Blessa',a:'Toro y Moi'}]},
+  {id:'phonk',name:'Phonk',nameZh:'放克电音',cat:'experimental',desc:'Memphis 说唱采样 + 牛铃 + 重型低频鼓击',artists:['DJ Smokey','Kordhell'],tags:['phonk','memphis','cowbell','dark'],songs:[{t:'Murder In My Mind',a:'Kordhell'},{t:'Sahara',a:'Hensonn'}]},
+  {id:'idm',name:'IDM',nameZh:'智能舞曲',cat:'experimental',desc:'复杂程序化节奏 + 非舞池导向的电子实验',artists:['Aphex Twin','Autechre','Squarepusher'],tags:['idm','glitch','complex rhythms','experimental electronic'],songs:[{t:'Windowlicker',a:'Aphex Twin'},{t:'Gantz Graf',a:'Autechre'}]},
+  {id:'noise',name:'Noise',nameZh:'噪音音乐',cat:'experimental',desc:'反音乐性 + 噪声纹理 + 极端音色实验',artists:['Merzbow','Whitehouse'],tags:['noise','harsh','industrial','abrasive'],songs:[{t:'Woodpecker No.1',a:'Merzbow'},{t:'Wriggle Like a Fucking Eel',a:'Whitehouse'}]},
+  {id:'future-bass',name:'Future Bass',nameZh:'未来贝斯',cat:'electronic',desc:'pluck 合成器 + 人声切片 + supersaw 主旋',artists:['Flume','San Holo','Illenium'],tags:['future bass','vocal chops','supersaw','melodic'],songs:[{t:'Never Be Like You',a:'Flume'},{t:'Light',a:'San Holo'}]},
+  {id:'hardstyle',name:'Hardstyle',nameZh:'硬派',cat:'electronic',desc:'失真鼓机 + 反向贝斯 + 欢欣鼓舞的硬核 EDM',artists:['Headhunterz','Brennan Heart'],tags:['hardstyle','distorted kick','reverse bass','euphoric'],songs:[{t:'Dragonborn',a:'Headhunterz'},{t:'Imaginary',a:'Brennan Heart'}]},
+  {id:'uk-garage',name:'UK Garage',nameZh:'英伦车库',cat:'electronic',desc:'2-step 摇摆律动 + 人声切片 + 伦敦俱乐部血统',artists:['Burial','MJ Cole','Disclosure'],tags:['uk garage','2-step','shuffled beat','vocal chops'],songs:[{t:'Archangel',a:'Burial'},{t:'Crazy Love',a:'MJ Cole'}]},
+  {id:'jersey-club',name:'Jersey Club',nameZh:'泽西俱乐部',cat:'electronic',desc:'140bpm 床板吱呀 + 五连音军鼓 + 高能 dance',artists:['DJ Sliink','UNIIQU3'],tags:['jersey club','bed squeak','five-stomp','fast'],songs:[{t:'Throw That Back',a:'DJ Sliink'},{t:'Microphone',a:'UNIIQU3'}]},
+  {id:'breakbeat',name:'Breakbeat',nameZh:'碎拍',cat:'electronic',desc:'切碎的 funk 鼓采样循环 + 高 BPM 能量',artists:['The Prodigy','The Chemical Brothers'],tags:['breakbeat','funky drums','energetic','sampled'],songs:[{t:'Firestarter',a:'The Prodigy'},{t:'Block Rockin’ Beats',a:'The Chemical Brothers'}]},
+  {id:'liquid-dnb',name:'Liquid DnB',nameZh:'流体鼓打贝斯',cat:'electronic',desc:'170bpm 碎拍 + 灵魂乐人声 + 流畅旋律',artists:['London Elektricity','Netsky'],tags:['liquid dnb','soulful','melodic','170bpm'],songs:[{t:'Just One Second',a:'London Elektricity'},{t:'Rio',a:'Netsky'}]},
 ];
 
 // Tag type mapping for prompt framework
@@ -820,16 +935,24 @@ function renderGenreCards() {
   const container = document.getElementById('genreCards');
   const filtered = state.genreFilter === 'all' ? GENRES : GENRES.filter(g => g.cat === state.genreFilter);
   container.innerHTML = filtered.map(g => {
-    const isExpanded = state.expandedGenre === g.id;
     const isAdded = state.tags.some(t => t.type === 'genre' && t.en === g.name.toLowerCase());
-    const songListHTML = g.songs.length ? g.songs.map((s, i) =>
-      `<div class="song-item ${state.currentSongId===g.id+'-'+i?'playing':''}" onclick="event.stopPropagation();playSong('${g.id+'-'+i}','${s.u}',this)">
-        <div class="song-play-btn">${state.currentSongId===g.id+'-'+i?'&#9646;&#9646;':'&#9654;'}</div>
-        <div class="song-info"><div class="song-title">${s.t}</div><div class="song-artist">${s.a}</div></div>
-      </div>`
-    ).join('') : '<div style="font-size:12px;color:var(--text-muted)">暂无试听</div>';
+    const hasSongs = g.songs && g.songs.length;
+    const songListHTML = hasSongs ? g.songs.map((s, i) => {
+      if (s.u) {
+        return `<div class="song-item ${state.currentSongId===g.id+'-'+i?'playing':''}" onclick="event.stopPropagation();playSong('${g.id+'-'+i}','${s.u}',this)">
+          <div class="song-play-btn">${state.currentSongId===g.id+'-'+i?'&#9646;&#9646;':'&#9654;'}</div>
+          <div class="song-info"><div class="song-title">${s.t}</div><div class="song-artist">${s.a}</div></div>
+        </div>`;
+      }
+      const q = encodeURIComponent(s.t + ' ' + s.a);
+      return `<a class="song-item" href="https://www.youtube.com/results?search_query=${q}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="text-decoration:none;color:inherit">
+        <div class="song-play-btn" style="font-size:13px">&#128269;</div>
+        <div class="song-info"><div class="song-title">${s.t}</div><div class="song-artist">${s.a} · YouTube 搜</div></div>
+      </a>`;
+    }).join('') : '';
+    const isPlayingThis = state.currentSongId && state.currentSongId.startsWith(g.id+'-');
 
-    return `<div class="card genre-card" onclick="toggleGenreExpand('${g.id}')">
+    return `<div class="card genre-card">
       <div class="genre-add ${isAdded?'added':''}" onclick="event.stopPropagation();addTag('genre','${g.name.toLowerCase()}','${g.nameZh}')" title="加入生成器">+</div>
       <div class="card-cn">${g.nameZh}</div>
       <div class="card-en">${g.name}</div>
@@ -837,12 +960,8 @@ function renderGenreCards() {
       <div class="card-tags">
         ${g.tags.slice(0, 4).map(t => `<span class="tag" onclick="event.stopPropagation();addTag('genre','${t}','${g.nameZh}: ${t}')">${t}</span>`).join('')}
       </div>
-      <div class="genre-detail ${isExpanded?'open':''}">
-        <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px">代表艺人: ${g.artists.join(' / ')}</div>
-        <div style="font-size:12px;font-weight:600;margin-bottom:8px;color:var(--text-secondary)">试听</div>
-        <div class="song-list">${songListHTML}</div>
-        ${state.currentSongId&&state.currentSongId.startsWith(g.id)?'<div class="progress-bar" onclick="event.stopPropagation();seekAudio(event,this)"><div class="progress-fill" id="prog-'+g.id+'" style="width:0%"></div></div>':''}
-      </div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:10px;line-height:1.6">代表艺人: ${g.artists.join(' / ')}</div>
+      ${hasSongs ? `<div class="song-list">${songListHTML}</div>${isPlayingThis?'<div class="progress-bar" onclick="event.stopPropagation();seekAudio(event,this)"><div class="progress-fill" id="prog-'+g.id+'" style="width:0%"></div></div>':''}` : ''}
     </div>`;
   }).join('');
 }
@@ -1141,6 +1260,298 @@ function initSearch() {
     }
   });
 }
+
+// ══════════════════════════════════════════
+//  PROMPT NOTEBOOK
+// ══════════════════════════════════════════
+const PM_DEFAULT_CATS = [
+  {id:'melody',name:'曲调限制'},{id:'vocal',name:'Vocal限制'},
+  {id:'duration',name:'时长限制'},{id:'style',name:'风格限制'},
+  {id:'structure',name:'结构限制'}
+];
+const PM_SEEDS = [
+  {name:'防拉高音三件套',category:'melody',content:'no key change, no belting, no falsetto',tags:['防拉高音','AI味'],remark:'结尾强行升调的终极克星'},
+  {name:'时长控制',category:'duration',content:'under 3 minutes, concise structure, no extended outro, no instrumental bridge',tags:['时长','结构'],remark:'防止曲子超过5分钟'},
+  {name:'自然结尾',category:'structure',content:'natural fade, restrained ending, fade out naturally, no dramatic finale, no climax build-up',tags:['结尾','自然'],remark:'配合防拉高音使用效果更好'}
+];
+let pmState = { cat:'all', tag:null, q:'' };
+function pmNewId() { return Date.now().toString(36) + Math.floor(Math.random()*1e4).toString(36); }
+
+function getNotebooks() {
+  let notes = JSON.parse(localStorage.getItem('promptNotebook') || '[]');
+  let changed = false;
+  notes = notes.map(n => {
+    if (!n.id) { n.id = pmNewId(); changed = true; }
+    if (n.tags === undefined) { n.tags = n.label ? [n.label] : []; changed = true; } // 老数据 label→tags
+    if (n.category === undefined) { n.category = ''; changed = true; }
+    if (n.name === undefined) { n.name = ''; changed = true; }
+    return n;
+  });
+  if (changed) localStorage.setItem('promptNotebook', JSON.stringify(notes));
+  return notes;
+}
+function saveNotebooks(notes) { localStorage.setItem('promptNotebook', JSON.stringify(notes)); }
+function getPCats() { return JSON.parse(localStorage.getItem('promptNotebookCats') || 'null') || PM_DEFAULT_CATS.slice(); }
+function savePCats(c) { localStorage.setItem('promptNotebookCats', JSON.stringify(c)); }
+function pCatName(id) { if (!id) return '未分类'; const c = getPCats().find(x => x.id === id); return c ? c.name : id; }
+function pmAllTags(notes) { const s = new Set(); notes.forEach(n => (n.tags||[]).forEach(t => s.add(t))); return [...s]; }
+
+function ensurePromptSeeds() {
+  if (localStorage.getItem('promptNotebookSeeded')) return;
+  const notes = getNotebooks();
+  PM_SEEDS.forEach(s => {
+    if (!notes.some(n => (n.content||'').trim() === s.content)) {
+      notes.unshift({ id:pmNewId(), name:s.name, content:s.content, category:s.category, tags:s.tags.slice(), remark:s.remark, time:Date.now() });
+    }
+  });
+  saveNotebooks(notes);
+  localStorage.setItem('promptNotebookSeeded', '1');
+}
+
+function renderNotebook() {
+  const notes = getNotebooks();
+  const cats = getPCats();
+  const empty = document.getElementById('notebookEmpty');
+  const list = document.getElementById('notebookList');
+  // 类别栏
+  const catBar = document.getElementById('pmCatBar');
+  if (catBar) {
+    let h = `<button class="pm-chip${pmState.cat==='all'?' active':''}" onclick="pmSetCat('all')">全部 ${notes.length}</button>`;
+    cats.forEach(c => { const n = notes.filter(x => x.category===c.id).length; h += `<button class="pm-chip${pmState.cat===c.id?' active':''}" onclick="pmSetCat('${c.id}')">${esc(c.name)} ${n}</button>`; });
+    const uncat = notes.filter(x => !x.category).length;
+    if (uncat) h += `<button class="pm-chip${pmState.cat==='uncat'?' active':''}" onclick="pmSetCat('uncat')">未分类 ${uncat}</button>`;
+    h += `<button class="pm-chip" onclick="pmAddCat()" title="新增类别">＋类别</button>`;
+    catBar.innerHTML = h;
+  }
+  // 标签栏
+  const tagBar = document.getElementById('pmTagBar');
+  if (tagBar) {
+    tagBar.innerHTML = pmAllTags(notes).map(t => `<button class="pm-tagchip${pmState.tag===t?' active':''}" onclick="pmSetTag('${esc(t).replace(/'/g,"\\'")}')">#${esc(t)}</button>`).join('');
+  }
+  // 过滤
+  const q = pmState.q.toLowerCase();
+  const filtered = notes.filter(n => {
+    if (pmState.cat === 'uncat') { if (n.category) return false; }
+    else if (pmState.cat !== 'all' && n.category !== pmState.cat) return false;
+    if (pmState.tag && !(n.tags||[]).includes(pmState.tag)) return false;
+    if (q && !(n.name||'').toLowerCase().includes(q) && !(n.content||'').toLowerCase().includes(q) && !(n.remark||'').toLowerCase().includes(q)) return false;
+    return true;
+  });
+  if (!notes.length) { empty.style.display=''; empty.textContent='还没有记录，点击上方按钮添加你的第一条有效 Prompt'; list.innerHTML=''; return; }
+  if (!filtered.length) { empty.style.display=''; empty.textContent='没有匹配的 Prompt'; list.innerHTML=''; return; }
+  empty.style.display = 'none';
+  list.innerHTML = filtered.map(n => {
+    const tags = (n.tags||[]).map(t => `<button class="note-tag" onclick="pmSetTag('${esc(t).replace(/'/g,"\\'")}')">#${esc(t)}</button>`).join('');
+    return `<div class="note-card" id="note-${n.id}">
+    <div class="note-top">
+      ${n.name ? `<span class="note-name">${esc(n.name)}</span>` : ''}
+      ${n.category ? `<span class="note-cat">${esc(pCatName(n.category))}</span>` : ''}
+      <span class="note-time" style="margin-left:auto">${fmtTime(n.time)}</span>
+      <div class="note-actions">
+        <div class="note-act" onclick="pmCopy('${n.id}')" title="复制">📋</div>
+        <div class="note-act" onclick="editNote('${n.id}')" title="编辑">✏️</div>
+        <div class="note-act del" onclick="deleteNote('${n.id}')" title="删除">✕</div>
+      </div>
+    </div>
+    <div class="note-content">${esc(n.content)}</div>
+    ${n.remark ? `<div class="note-remark">${esc(n.remark)}</div>` : ''}
+    ${tags ? `<div class="note-tags">${tags}</div>` : ''}
+    <button class="note-copy-btn" onclick="pmCopy('${n.id}')">📋 复制 Prompt</button>
+  </div>`;
+  }).join('');
+}
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function fmtTime(t) { const d = new Date(t); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'); }
+
+function pmSetCat(id) { pmState.cat = id; renderNotebook(); }
+function pmSetTag(t) { pmState.tag = pmState.tag===t ? null : t; renderNotebook(); }
+function pmSearch(v) { pmState.q = v; renderNotebook(); }
+function pmCopy(id) { const n = getNotebooks().find(x => x.id===id); if (n) copyText(n.content); }
+function pmAddCat() {
+  const name = (prompt('新类别名称：') || '').trim();
+  if (!name) return;
+  const cats = getPCats();
+  cats.push({ id:'c'+pmNewId(), name });
+  savePCats(cats); renderNotebook();
+}
+
+// 纯本地关键词智能归类（无需 key）
+const PM_RULES = {
+  duration: ['minute','minutes',' min ',' sec ','second','seconds','length','duration','under 2','under 3','under 4','under 5','too long','time limit','短一点','时长','分钟','秒','别太长'],
+  structure: ['verse','chorus','bridge','intro','outro','pre-chorus','hook','fade','fade out','build-up','build up','drop','arrangement','section','[verse]','[chorus]','[bridge]','[outro]','结构','段落','前奏','间奏','尾奏','副歌','主歌','结尾','收尾'],
+  melody: ['key change','no key','belting','belt','falsetto','head voice','chest voice','pitch','high note','octave','melisma','vibrato','transpose','modulation','glissando','升调','转调','高音','假音','音高','飙高音','拉高'],
+  vocal: ['vocal','vocals','autotune','auto-tune','breathy','whisper','whispery','raspy','airy','voice','singer','harmony','harmonies','ad-lib','adlib','falsetto-free','timbre','男声','女声','人声','嗓','唱腔','气声','沙哑','音色','和声'],
+  style: ['pop','rock','folk','lo-fi','lofi','jazz','jazzy','edm','house','techno','hip hop','hip-hop','hiphop','trap','r&b','rnb','funk','soul','ambient','synthwave','ballad','acoustic','orchestral','cinematic','bpm','tempo','groove','genre','city pop','blues','country','metal','punk','indie','disco','reggae','风格','流派','曲风','摇滚','流行','民谣','电子','爵士','说唱','嘻哈']
+};
+function pmClassify(note) {
+  const text = ((note.name||'') + ' ' + (note.content||'') + ' ' + (note.tags||[]).join(' ') + ' ' + (note.remark||'')).toLowerCase();
+  let best = '', bestScore = 0;
+  for (const [cat, kws] of Object.entries(PM_RULES)) {
+    let s = 0;
+    kws.forEach(k => { if (text.includes(k)) s++; });
+    if (s > bestScore) { bestScore = s; best = cat; }
+  }
+  return bestScore > 0 ? best : '';
+}
+function pmAutoClassify() {
+  const notes = getNotebooks();
+  const targets = notes.filter(n => !n.category);
+  if (!targets.length) { showToast('没有未分类的 Prompt'); return; }
+  let done = 0, miss = 0;
+  notes.forEach(n => {
+    if (n.category) return;
+    const cat = pmClassify(n);
+    if (cat) { n.category = cat; done++; } else { miss++; }
+  });
+  saveNotebooks(notes);
+  pmState.cat = 'all';
+  renderNotebook();
+  showToast(`已归类 ${done} 条${miss ? `，${miss} 条没识别出（可手动改）` : ''}`);
+}
+
+function addNote() {
+  const notes = getNotebooks();
+  const presetCat = (pmState.cat!=='all' && pmState.cat!=='uncat') ? pmState.cat : '';
+  const id = pmNewId();
+  notes.unshift({ id, name:'', content:'', category:presetCat, tags:[], remark:'', time:Date.now() });
+  saveNotebooks(notes);
+  pmState.cat='all'; pmState.tag=null; pmState.q='';
+  const sb = document.getElementById('pmSearch'); if (sb) sb.value='';
+  renderNotebook();
+  editNote(id);
+}
+function pmCancelEdit(id) {
+  const n = getNotebooks().find(x => x.id===id);
+  if (n && !(n.content||'').trim() && !(n.name||'').trim()) {
+    saveNotebooks(getNotebooks().filter(x => x.id!==id)); // 取消空白新建则丢弃
+  }
+  renderNotebook();
+}
+function editNote(id) {
+  const notes = getNotebooks();
+  const n = notes.find(x => x.id===id); if (!n) return;
+  const card = document.getElementById('note-' + id); if (!card) return;
+  const catOpts = `<option value=""${!n.category?' selected':''}>未分类</option>` + getPCats().map(c => `<option value="${c.id}"${c.id===n.category?' selected':''}>${esc(c.name)}</option>`).join('');
+  card.innerHTML = `
+    <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+      <div style="flex:1;min-width:140px"><label style="font-size:11px;color:var(--text-muted);font-weight:600">名称</label>
+      <input type="text" id="nN-${id}" value="${esc(n.name||'')}" style="width:100%;margin-top:4px;padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px;background:var(--bg);color:var(--text);outline:none;box-sizing:border-box" placeholder="给这条 Prompt 起个名"></div>
+      <div style="min-width:140px"><label style="font-size:11px;color:var(--text-muted);font-weight:600">类别</label>
+      <select id="nC-${id}" style="width:100%;margin-top:4px;padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px;background:var(--bg);color:var(--text);outline:none;box-sizing:border-box">${catOpts}</select></div>
+    </div>
+    <div style="margin-bottom:8px"><label style="font-size:11px;color:var(--text-muted);font-weight:600">Prompt 内容</label>
+    <textarea id="nT-${id}" rows="4" style="margin-top:4px" placeholder="粘贴或输入你的有效 Prompt...">${esc(n.content)}</textarea></div>
+    <div style="margin-bottom:8px"><label style="font-size:11px;color:var(--text-muted);font-weight:600">标签（逗号分隔）</label>
+    <input type="text" id="nG-${id}" value="${esc((n.tags||[]).join(', '))}" style="width:100%;margin-top:4px;padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px;background:var(--bg);color:var(--text);outline:none;box-sizing:border-box" placeholder="如：防拉高音, 时长"></div>
+    <div style="margin-bottom:4px"><label style="font-size:11px;color:var(--text-muted);font-weight:600">备注（可选）</label>
+    <textarea id="nR-${id}" rows="2" style="margin-top:4px" placeholder="记录效果、适用场景等...">${esc(n.remark||'')}</textarea></div>
+    <div class="note-edit-actions">
+      <button class="note-cancel" onclick="pmCancelEdit('${id}')">取消</button>
+      <button class="note-save" onclick="saveNote('${id}')">保存</button>
+    </div>`;
+  document.getElementById('nT-' + id).focus();
+}
+function saveNote(id) {
+  const notes = getNotebooks();
+  const i = notes.findIndex(x => x.id===id); if (i<0) return;
+  const content = document.getElementById('nT-' + id).value.trim();
+  if (!content) { showToast('Prompt 内容不能为空'); return; }
+  notes[i].name = document.getElementById('nN-' + id).value.trim();
+  notes[i].category = document.getElementById('nC-' + id).value;
+  notes[i].content = content;
+  notes[i].tags = document.getElementById('nG-' + id).value.split(/[,，]/).map(t => t.trim()).filter(Boolean);
+  notes[i].remark = document.getElementById('nR-' + id).value.trim();
+  notes[i].time = Date.now();
+  saveNotebooks(notes);
+  renderNotebook();
+  showToast('记录已保存');
+}
+function deleteNote(id) {
+  if (!confirm('确定删除这条记录？')) return;
+  saveNotebooks(getNotebooks().filter(x => x.id!==id));
+  renderNotebook();
+}
+
+// ══════════════════════════════════════════
+//  LYRICS NOTEBOOK
+// ══════════════════════════════════════════
+function getLyrics() {
+  return JSON.parse(localStorage.getItem('lyricsNotebook') || '[]');
+}
+function saveLyricsAll(items) {
+  localStorage.setItem('lyricsNotebook', JSON.stringify(items));
+}
+function renderLyrics() {
+  const items = getLyrics();
+  const empty = document.getElementById('lyricsEmpty');
+  const list = document.getElementById('lyricsList');
+  if (!items.length) { empty.style.display = ''; list.innerHTML = ''; return; }
+  empty.style.display = 'none';
+  list.innerHTML = items.map((n, i) => `<div class="note-card" id="lyric-${i}">
+    <div class="note-top">
+      ${n.title ? `<span class="note-label">${esc(n.title)}</span>` : ''}
+      ${n.style ? `<span class="note-label" style="background:var(--bg-hover);color:var(--text-secondary)">${esc(n.style)}</span>` : ''}
+      <span class="note-time" style="margin-left:auto">${fmtTime(n.time)}</span>
+      <div class="note-actions">
+        <div class="note-act" onclick="copyText(\`${n.content.replace(/\\/g,'\\\\').replace(/`/g,'\\`')}\`,this)" title="复制">📋</div>
+        <div class="note-act" onclick="editLyric(${i})" title="编辑">✏️</div>
+        <div class="note-act del" onclick="deleteLyric(${i})" title="删除">✕</div>
+      </div>
+    </div>
+    <div class="note-content">${esc(n.content)}</div>
+    ${n.remark ? `<div class="note-remark">${esc(n.remark)}</div>` : ''}
+  </div>`).join('');
+}
+function addLyric() {
+  const items = getLyrics();
+  items.unshift({ title: '', style: '', content: '', remark: '', time: Date.now() });
+  saveLyricsAll(items);
+  renderLyrics();
+  editLyric(0);
+}
+function editLyric(idx) {
+  const items = getLyrics();
+  const n = items[idx];
+  const card = document.getElementById('lyric-' + idx);
+  card.innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px">
+      <div><label style="font-size:11px;color:var(--text-muted);font-weight:600">标题</label>
+      <input type="text" value="${esc(n.title)}" id="lyricTitle-${idx}" style="width:100%;margin-top:4px;padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px;background:var(--bg);color:var(--text);outline:none;box-sizing:border-box" placeholder="如：困局、海风、暧昧..."></div>
+      <div><label style="font-size:11px;color:var(--text-muted);font-weight:600">风格 / 标签</label>
+      <input type="text" value="${esc(n.style)}" id="lyricStyle-${idx}" style="width:100%;margin-top:4px;padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px;background:var(--bg);color:var(--text);outline:none;box-sizing:border-box" placeholder="如：City Pop、民谣、R&B..."></div>
+    </div>
+    <div style="margin-bottom:8px"><label style="font-size:11px;color:var(--text-muted);font-weight:600">歌词内容</label>
+    <textarea id="lyricContent-${idx}" rows="12" style="margin-top:4px" placeholder="粘贴你喜欢的歌词，可以是完整一首，也可以是几句金句...">${esc(n.content)}</textarea></div>
+    <div style="margin-bottom:4px"><label style="font-size:11px;color:var(--text-muted);font-weight:600">备注 / 灵感（可选）</label>
+    <textarea id="lyricRemark-${idx}" rows="2" style="margin-top:4px" placeholder="记录哪里打动你、可以用在什么场景...">${esc(n.remark || '')}</textarea></div>
+    <div class="note-edit-actions">
+      <button class="note-cancel" onclick="renderLyrics()">取消</button>
+      <button class="note-save" onclick="saveLyric(${idx})">保存</button>
+    </div>`;
+  document.getElementById('lyricContent-' + idx).focus();
+}
+function saveLyric(idx) {
+  const items = getLyrics();
+  const content = document.getElementById('lyricContent-' + idx).value.trim();
+  if (!content) { showToast('歌词内容不能为空'); return; }
+  items[idx].content = content;
+  items[idx].title = document.getElementById('lyricTitle-' + idx).value.trim();
+  items[idx].style = document.getElementById('lyricStyle-' + idx).value.trim();
+  items[idx].remark = document.getElementById('lyricRemark-' + idx).value.trim();
+  items[idx].time = Date.now();
+  saveLyricsAll(items);
+  renderLyrics();
+  showToast('歌词已保存');
+}
+function deleteLyric(idx) {
+  if (!confirm('确定删除这条歌词记录？')) return;
+  const items = getLyrics();
+  items.splice(idx, 1);
+  saveLyricsAll(items);
+  renderLyrics();
+}
+
+document.addEventListener('DOMContentLoaded', () => { ensurePromptSeeds(); renderNotebook(); renderLyrics(); });
 </script>
 </body>
 </html>
